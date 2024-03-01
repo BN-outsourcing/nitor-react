@@ -1,0 +1,74 @@
+{
+    "main" : {
+        "image" : ["/video/main01.mp4","/video/main02.mp4","/video/main03.mp4","/video/main04.mp4"]
+    },
+    "tag" : [
+        {
+            "type" : 1,
+            "name" : "BRANDING",
+            "color" : "color01"
+        },
+        {
+            "type" : 2,
+            "name" : "EXHIBITION GRAPHIC",
+            "color" : "color02"
+        },
+        {
+            "type" : 3,
+            "name" : "GRAPHIC",
+            "color" : "color03"
+        },
+        {
+            "type" : 4,
+            "name" : "EDITORIAL· PACKAGE",
+            "color" : "color04"
+        },
+        {
+            "type" : 5,
+            "name" : "GUI · UX",
+            "color" : "color05"
+        }
+    ],
+    "product" : [
+        {
+            "id" : 1,
+            "tag" : [1,2],
+            "eng" : "EATS PUBLIK MARKET",
+            "title" : "PUBLIK 가산<br/>잇츠 퍼블릭 마켓",
+            "desc" : "PUBLIK은 가산에 위치한 서울 최대규모의 지식산업센터로 새로운 라이프스타일 아이디어와 지적 영감을 위한<br/>콘텐츠 프로그램을 더한 복합문화공간을 조성합니다. PUBLIK의 푸드코트 브랜드 ‘잇츠 퍼블릭 마켓’은 기존 푸드 홀의 개념을 확장시켜<br/>다양한 맛집 셀렉션과 함께 식재료 판매, 보틀샵, 딜리버리, 투고 서비스 등 다양한 식문화 경험을 체험할 수 있는 공간입니다.<br/><br/>니토르는 ‘잇츠 퍼블릭 마켓’의 브랜드 네이밍, 살아있는 즐거움이 통통 튀는 브랜드 컨셉과 아이덴티티 및 어플리케이션 디자인을 개발하여<br/>브랜드 전반에 걸친 통합 브랜드 아이덴티티를 구축했습니다.",
+            "image" : ["/image/outwork/view/test01.png","/image/outwork/view/test01.png","/image/outwork/view/test01.png","/image/outwork/view/test01.png","/image/outwork/view/test01.png"]
+        },
+        {
+            "id" : 2,
+            "tag" : [1,2],
+            "eng" : "EATS PUBLIK MARKET2",
+            "title" : "PUBLIK 가산<br/>잇츠 퍼블릭 마켓",
+            "desc" : "PUBLIK은 가산에 위치한 서울 최대규모의 지식산업센터로 새로운 라이프스타일 아이디어와 지적 영감을 위한<br/>콘텐츠 프로그램을 더한 복합문화공간을 조성합니다. PUBLIK의 푸드코트 브랜드 ‘잇츠 퍼블릭 마켓’은 기존 푸드 홀의 개념을 확장시켜<br/>다양한 맛집 셀렉션과 함께 식재료 판매, 보틀샵, 딜리버리, 투고 서비스 등 다양한 식문화 경험을 체험할 수 있는 공간입니다.<br/><br/>니토르는 ‘잇츠 퍼블릭 마켓’의 브랜드 네이밍, 살아있는 즐거움이 통통 튀는 브랜드 컨셉과 아이덴티티 및 어플리케이션 디자인을 개발하여<br/>브랜드 전반에 걸친 통합 브랜드 아이덴티티를 구축했습니다.",
+            "image" : ["/image/outwork/view/test01.png","/image/outwork/view/test01.png","/image/outwork/view/test01.png"]
+        },
+        {
+            "id" : 3,
+            "tag" : [2,3],
+            "eng" : "EATS PUBLIK MARKET3",
+            "title" : "PUBLIK 가산<br/>잇츠 퍼블릭 마켓",
+            "desc" : "PUBLIK은 가산에 위치한 서울 최대규모의 지식산업센터로 새로운 라이프스타일 아이디어와 지적 영감을 위한<br/>콘텐츠 프로그램을 더한 복합문화공간을 조성합니다. PUBLIK의 푸드코트 브랜드 ‘잇츠 퍼블릭 마켓’은 기존 푸드 홀의 개념을 확장시켜<br/>다양한 맛집 셀렉션과 함께 식재료 판매, 보틀샵, 딜리버리, 투고 서비스 등 다양한 식문화 경험을 체험할 수 있는 공간입니다.<br/><br/>니토르는 ‘잇츠 퍼블릭 마켓’의 브랜드 네이밍, 살아있는 즐거움이 통통 튀는 브랜드 컨셉과 아이덴티티 및 어플리케이션 디자인을 개발하여<br/>브랜드 전반에 걸친 통합 브랜드 아이덴티티를 구축했습니다.",
+            "image" : ["/image/outwork/view/test01.png","/image/outwork/view/test01.png","/image/outwork/view/test01.png"]
+        },
+        {
+            "id" : 4,
+            "tag" : [4,5],
+            "eng" : "EATS PUBLIK MARKET4",
+            "title" : "PUBLIK 가산<br/>잇츠 퍼블릭 마켓",
+            "desc" : "PUBLIK은 가산에 위치한 서울 최대규모의 지식산업센터로 새로운 라이프스타일 아이디어와 지적 영감을 위한<br/>콘텐츠 프로그램을 더한 복합문화공간을 조성합니다. PUBLIK의 푸드코트 브랜드 ‘잇츠 퍼블릭 마켓’은 기존 푸드 홀의 개념을 확장시켜<br/>다양한 맛집 셀렉션과 함께 식재료 판매, 보틀샵, 딜리버리, 투고 서비스 등 다양한 식문화 경험을 체험할 수 있는 공간입니다.<br/><br/>니토르는 ‘잇츠 퍼블릭 마켓’의 브랜드 네이밍, 살아있는 즐거움이 통통 튀는 브랜드 컨셉과 아이덴티티 및 어플리케이션 디자인을 개발하여<br/>브랜드 전반에 걸친 통합 브랜드 아이덴티티를 구축했습니다.",
+            "image" : ["/image/outwork/view/test01.png","/image/outwork/view/test01.png","/image/outwork/view/test01.png"]
+        },
+        {
+            "id" : 5,
+            "tag" : [2,3],
+            "eng" : "EATS PUBLIK MARKET5",
+            "title" : "PUBLIK 가산<br/>잇츠 퍼블릭 마켓",
+            "desc" : "PUBLIK은 가산에 위치한 서울 최대규모의 지식산업센터로 새로운 라이프스타일 아이디어와 지적 영감을 위한<br/>콘텐츠 프로그램을 더한 복합문화공간을 조성합니다. PUBLIK의 푸드코트 브랜드 ‘잇츠 퍼블릭 마켓’은 기존 푸드 홀의 개념을 확장시켜<br/>다양한 맛집 셀렉션과 함께 식재료 판매, 보틀샵, 딜리버리, 투고 서비스 등 다양한 식문화 경험을 체험할 수 있는 공간입니다.<br/><br/>니토르는 ‘잇츠 퍼블릭 마켓’의 브랜드 네이밍, 살아있는 즐거움이 통통 튀는 브랜드 컨셉과 아이덴티티 및 어플리케이션 디자인을 개발하여<br/>브랜드 전반에 걸친 통합 브랜드 아이덴티티를 구축했습니다.",
+            "image" : ["/image/outwork/view/test01.png","/image/outwork/view/test01.png","/image/outwork/view/test01.png"]
+        }
+    ]
+}

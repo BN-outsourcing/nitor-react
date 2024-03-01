@@ -1,0 +1,108 @@
+@font-face {
+    font-family: 'Big Daily Short';
+    src: url('BigDailyShort-BoldItalic.woff2') format('woff2'),
+        url('BigDailyShort-BoldItalic.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Big Daily Short';
+    src: url('BigDailyShort-Bold.woff2') format('woff2'),
+        url('BigDailyShort-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Big Daily Short';
+    src: url('BigDailyShort-ExtraLightItalic.woff2') format('woff2'),
+        url('BigDailyShort-ExtraLightItalic.woff') format('woff');
+    font-weight: 200;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Big Daily Short';
+    src: url('BigDailyShort-ExtraLight.woff2') format('woff2'),
+        url('BigDailyShort-ExtraLight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Big Daily Short';
+    src: url('BigDailyShort-Black.woff2') format('woff2'),
+        url('BigDailyShort-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Big Daily Short';
+    src: url('BigDailyShort-Italic.woff2') format('woff2'),
+        url('BigDailyShort-Italic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Big Daily Short';
+    src: url('BigDailyShort-Light.woff2') format('woff2'),
+        url('BigDailyShort-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Big Daily Short';
+    src: url('BigDailyShort-Regular.woff2') format('woff2'),
+        url('BigDailyShort-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Big Daily Short';
+    src: url('BigDailyShort-LightItalic.woff2') format('woff2'),
+        url('BigDailyShort-LightItalic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Big Daily Short';
+    src: url('BigDailyShort-SemiLightItalic.woff2') format('woff2'),
+        url('BigDailyShort-SemiLightItalic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Big Daily Short';
+    src: url('BigDailyShort-BlackItalic.woff2') format('woff2'),
+        url('BigDailyShort-BlackItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Big Daily Short';
+    src: url('BigDailyShort-SemiLight.woff2') format('woff2'),
+        url('BigDailyShort-SemiLight.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
