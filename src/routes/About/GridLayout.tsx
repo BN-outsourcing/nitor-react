@@ -1,10 +1,15 @@
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { useRef } from "react";
 import styled from "styled-components";
+import { getTrigger } from "../../lib/gsap";
 
 const Grid = styled.div`
     display: grid;
     grid-template-columns: repeat(3,1fr);
     gap: 200px calc(230*100/1920*1vw);
     margin-top: 460px;
+    overflow: hidden;
 
     @media screen and (max-width : 1280px) {
         gap: 150px 80px;
@@ -116,16 +121,60 @@ const Item = styled.div`
 
 
 export default function GridLayout() {
+
+    const gridRef = useRef<HTMLDivElement>(null);
+
+    useGSAP(()=>{
+
+        if(gridRef.current){
+
+            gridRef.current.querySelectorAll('.item').forEach(el=>{
+
+                const itemTl = gsap.timeline({
+                    defaults : {
+                        ease : "back.inOut(1.4)",
+                        duration : 0.8,
+                    },
+                    scrollTrigger : getTrigger(el)
+                })
+
+                itemTl.fromTo(el.querySelector('h3'),{
+                    y : 50,
+                    opacity : 0
+                },{
+                    y : 0,
+                    opacity : 1,
+                })
+
+                el.querySelectorAll('ul li').forEach(li=>{
+
+                    itemTl.fromTo(li,{
+                        x : -50,
+                        opacity : 0
+                    },{
+                        x : 0,
+                        opacity : 1,
+                    },">-=50%")
+
+                })
+
+                
+            })
+
+        }
+
+    },[gridRef.current]);
+
     return (
-        <Grid>
-            <Item>
+        <Grid ref={gridRef}>
+            <Item className="item">
                 <h3>branding</h3>
                 <ul>
                     <li>기업 및 제품 브랜드 로고 및 디자인 시스템</li>
                     <li>서비스 통합 디자인 시스템 정립</li>
                 </ul>
             </Item>
-            <Item>
+            <Item className="item">
                 <h3>
                     exhibition graphic
                 </h3>
@@ -135,7 +184,7 @@ export default function GridLayout() {
                     <li>사인 디자인</li>
                 </ul>
             </Item>
-            <Item>
+            <Item className="item">
                 <h3>graphic</h3>
                 <ul>
                     <li>기업 브랜딩</li>
@@ -143,7 +192,7 @@ export default function GridLayout() {
                     <li>서비스 통합 디자인 시스템 정립</li>
                 </ul>
             </Item>
-            <Item>
+            <Item className="item">
                 <h3>
                     editorial<br/>
                     <span>&</span> package
@@ -154,7 +203,7 @@ export default function GridLayout() {
                     <li>리플렛 디자인</li>
                 </ul>
             </Item>
-            <Item>
+            <Item className="item">
                 <h3>
                     GUI <span>&</span> ux
                 </h3>

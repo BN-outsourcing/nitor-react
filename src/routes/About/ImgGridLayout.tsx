@@ -1,4 +1,8 @@
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { useRef } from "react";
 import styled from "styled-components";
+import { getTrigger } from "../../lib/gsap";
 
 const ImgGrid = styled.div`
     display: flex;
@@ -47,22 +51,36 @@ const ImgGridItem = styled.div`
         word-break: keep-all;
     }
 
-    > div {
+    .right {
         width: 90%;
         max-width: 820px;
         margin-left: auto;
     }
 
-    .img {
-        border-radius: 25px;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-        &::after {
-            content: '';
-            display: block;
-            padding-bottom: calc(776/1032*100%);
+    .imgs {
+        position: relative;
+        .img {
+            border-radius: 25px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            &::after {
+                content: '';
+                display: block;
+                padding-bottom: calc(776/1032*100%);
+            }
         }
+
+        .back {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            transform-origin: right;
+        }
+
     }
 
     @media screen and (max-width : 1280px) {
@@ -98,15 +116,52 @@ const ImgGridItem = styled.div`
 
 export default function ImgGridLayout() {
 
+    const gridRef = useRef<HTMLDivElement>(null);
+
+    useGSAP(()=>{
+
+        if(gridRef.current){
+
+            gridRef.current.querySelectorAll('.imgs').forEach(el=>{
+
+                gsap.fromTo(el.querySelector('.back'),{
+                    scaleX : 1
+                },{
+                    scaleX : 0,
+                    scrollTrigger : getTrigger(el)
+                });
+
+            });
+
+            gsap.fromTo(gridRef.current.querySelector('.right p'),{
+                y : 50,
+                opacity : 0
+            },{
+                y : 0,
+                opacity : 1,
+                scrollTrigger : getTrigger(gridRef.current.querySelector('.right p'))
+            });
+
+        }
+
+
+    },[gridRef.current]);
+    
     return (
 
-        <ImgGrid>
+        <ImgGrid ref={gridRef}>
             <ImgGridItem>
-                <img src="/image/about/grid-img01.png" alt=""/>
+                <div className="imgs">
+                    <img src="/image/about/grid-img01.png" alt=""/>
+                    <div className="back"></div>
+                </div>
             </ImgGridItem>
             <ImgGridItem>
-                <div>
-                    <div className="img" style={{backgroundImage : 'url(/image/about/grid-img02.png)'}}></div>
+                <div className="right">
+                    <div className="imgs">
+                        <div className="img" style={{backgroundImage : 'url(/image/about/grid-img02.png)'}}/>
+                        <div className="back"></div>
+                    </div>
                     <p>
                         NITOR의 VI는 전진하는 빛이 매질을 만나 분산되는 순간이 담겨있습니다.<br/>
                         각자 다른 속도와 각도로 분산되는 빛의 형태는 NITOR가 제공하는<br/>

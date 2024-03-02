@@ -1,4 +1,8 @@
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { useRef } from "react";
 import styled from "styled-components"
+import { getTrigger } from "../../lib/gsap";
 
 const Imb = styled.div`
     position: relative;
@@ -7,6 +11,8 @@ const Imb = styled.div`
         right: calc(130/1600*100%);
         top: calc(60/1460*100%);
         width: calc(620*100/1920*1vw);
+        cursor: none;
+        border-radius: 1000px;
     }
 
     @media screen and (max-width: 1024px) {
@@ -26,6 +32,12 @@ const Tit = styled.h2`
     text-transform: uppercase;
     position: relative;
     z-index: 2;
+    pointer-events: none;
+
+    div {
+        overflow: hidden;
+    }
+
     span {
         font-family: 'Big Daily Short';
     }
@@ -74,6 +86,7 @@ const Search = styled.div`
         padding: calc(20/24*1em) 0;
         font-size: 20px;
         display: flex;
+        align-items: center;
         justify-content: space-between;
         font-family: 'Neue Haas Grotesk Display Pro';
         border-bottom: 1px solid #fff;
@@ -81,6 +94,9 @@ const Search = styled.div`
             display: inline-block;
             border-right: 2px solid #4d4d4d;
             padding-right: 7px;
+        }
+        i {
+            font-size: calc(32/20*1em);
         }
     }
 
@@ -91,11 +107,17 @@ const Search = styled.div`
         font-size: 20px;
         opacity: 0.6;
         margin-top: calc(25/24*1em);
+        display: inline-flex;
+        align-items: center;
         span {
             display: inline-flex;
             img {
                 margin: 0 5px;
             }
+        }
+        i {
+            margin-left: calc(10/20*1em);
+            font-size: calc(30/20*1em);
         }
 
     }
@@ -176,6 +198,7 @@ const Tbx = styled.div`
     box-sizing: border-box;
     margin-left: auto;
     text-align: right;
+    overflow: hidden;
 
     .inline {
 
@@ -193,6 +216,10 @@ const Tbx = styled.div`
 
         .right {
             text-align: right;
+        }
+
+        .fade {
+            overflow: hidden;
         }
         
         .desc {
@@ -236,28 +263,203 @@ const Tbx = styled.div`
 
 `;
 
+type Props = {
+    cursorRef : React.RefObject<HTMLDivElement>
+}
 
-export default function ImbLayout() {
+export default function ImbLayout({cursorRef} : Props) {
+
+    const imgRef = useRef(null);
+    useGSAP(()=>{
+
+        if(imgRef.current){
+
+            const target = imgRef.current as HTMLElement;
+
+            gsap.fromTo(target,{
+                filter : "blur(5px)"
+            },{
+                filter : "blur(0px)",
+                ease : "back.inOut(1.4)",
+                duration : 0.8,
+                scrollTrigger : {
+                    trigger : target,
+                    start : "top bottom-=15%"
+                }
+            })
+
+        }
+
+    },[imgRef.current]);
+
+    const imgOver = ()=>{
+        gsap.to(cursorRef.current,{
+            opacity : 1
+        })
+    }
+    const imgLeave = ()=>{
+        gsap.to(cursorRef.current,{
+            opacity : 0
+        })
+    }
+
+    const titRef = useRef(null);
+    useGSAP(()=>{
+
+        if(titRef.current){
+
+            const target = titRef.current as HTMLElement;
+
+            target.querySelectorAll('div p').forEach(el=>{
+                gsap.fromTo(el,{
+                    yPercent : 100
+                },{
+                    yPercent : 0,
+                    ease : "back.inOut(1.4)",
+                    duration : 0.8,
+                    scrollTrigger : {
+                        trigger : target,
+                        start : "top bottom-=15%"
+                    }
+                })
+            })
+
+        }
+
+    },[titRef.current]);
+
+    const searchRef = useRef<HTMLDivElement>(null);
+    useGSAP(()=>{
+
+        if(!searchRef.current) return;
+
+        const char = searchRef.current.querySelector('.seb p')?.textContent as string;
+        gsap.set(searchRef.current.querySelector('.seb p'),{
+            text : ""
+        })
+        gsap.fromTo(searchRef.current.querySelector('.seb p'),{
+            borderColor : "#000"
+        },{
+            borderColor : "#4d4d4d",
+            yoyo : true,
+            repeat : -1
+        });
+
+        const typingTl = gsap.timeline({
+            scrollTrigger : getTrigger(searchRef.current.querySelector('.seb'))
+        })
+        typingTl.fromTo(searchRef.current.querySelector('.seb'),{
+            y : 50,
+            opacity : 0
+        },{
+            y : 0,
+            opacity : 1,
+            onComplete : ()=>{
+                if(!searchRef.current) return;
+                
+                gsap.fromTo(searchRef.current.querySelector('.seb p'),{
+                    text : ""
+                },{
+                    text : char,
+                    yoyo : true,
+                    repeat : -1,
+                    repeatDelay : 3,
+                    ease : "none"
+                })
+            }
+        });
+
+        typingTl.fromTo(searchRef.current.querySelector('.sound'),{
+            y : 50,
+            opacity : 0
+        },{
+            y : 0,
+            opacity : 0.6
+        },">-=50%");
+
+        searchRef.current.querySelectorAll('dl').forEach(el=>{
+
+            typingTl.fromTo(el,{
+                y : 50,
+                opacity : 0
+            },{
+                y : 0,
+                opacity : 1
+            },">-=50%");
+
+        });
+
+
+    },[searchRef.current]);
+
+    const tbxRef = useRef(null);
+    useGSAP(()=>{
+
+        if(tbxRef.current){
+
+            const target = tbxRef.current as HTMLElement;
+
+            const fadeTl = gsap.timeline({
+                scrollTrigger : getTrigger(target)
+            })
+            fadeTl.fromTo(target.querySelector('.right'),{
+                x : 50,
+                opacity : 0
+            },{
+                x : 0,
+                opacity : 1
+            })
+            target.querySelectorAll('.fade p').forEach(el=>{
+                fadeTl.fromTo(el,{
+                    yPercent : 100,
+                },{
+                    yPercent : 0,
+                },">-=50%")
+            })
+
+
+            gsap.fromTo(target.querySelector('.desc'),{
+                y : 50,
+                opacity : 0,
+            },{
+                y : 0,
+                opacity : 1,
+                ease : "back.inOut(1.4)",
+                duration : 0.8,
+                scrollTrigger : getTrigger(target.querySelector('.desc'))
+            })
+
+        }
+
+    },[tbxRef.current]);
+
+
     return (
 
         <Imb>
 
-            <div className="img">
+            <div 
+                className="img"
+                ref={imgRef}
+                onMouseOver={imgOver}
+                onMouseLeave={imgLeave}
+            >
                 <img src="/image/about/img.png" alt=""/>
             </div>
 
-            <Tit>
-                wanna e<span>xp</span>erience<br/>
-                <i>who</i> we are<span>?</span>
+            <Tit ref={titRef}>
+                <div><p>wanna e<span>xp</span>erience</p></div>
+                <div><p><i>who</i> we are<span>?</span></p></div>
             </Tit>
-            <Search>
+
+            <Search ref={searchRef}>
                 <div className="seb">
                     <p>NITOR</p>
-                    <img src="" alt=""/>
+                    <i className="xi-search"/>
                 </div>
                 <div className="sound">
                     <span>[ni <img src="/image/about/icon.png" alt=""/> tor, 니토르]</span>
-                    <img src="" alt=""/>
+                    <i className="xi-volume-up"/>
                 </div>
                 <dl>
                     <dt>Brightness, splendor</dt>
@@ -269,11 +471,11 @@ export default function ImbLayout() {
                 </dl>
             </Search>
 
-            <Tbx>
+            <Tbx ref={tbxRef}>
                 <div className="inline">
                     <p className="right">In all areas where</p>
-                    visual communication is needed in our daily lives,<br/>
-                    NITOR wants to spread that <i>light</i> constantly.
+                    <div className="fade"><p>visual communication is needed in our daily lives,</p></div>
+                    <div className="fade"><p>NITOR wants to spread that <i>light</i> constantly.</p></div>
                     <p className="desc">
                         우리의 일상 속 비주얼 커뮤니케이션이 필요한 모든 분야에<br/>
                         NITOR는 그 빛을 끊임없이 확산시키고자 합니다.

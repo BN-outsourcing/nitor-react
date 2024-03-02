@@ -303,10 +303,11 @@ const Button = styled.button<ButtonType>`
                 `;
             }
         }};
+        font-size : 14px;
     }
 
     @media screen and (max-width : 480px) {
-        font-size : 14px;
+        font-size : 12px;
     }
 
 `;

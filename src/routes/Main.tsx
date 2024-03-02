@@ -1,8 +1,10 @@
 import styled from "styled-components"
 import { useSetRecoilState } from "recoil";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { footerAtom } from "../Atom/footer";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 const Wrapper = styled.div`
     display: flex;
@@ -65,6 +67,16 @@ const Tbx = styled.dl`
 
 `;
 
+
+const VideoDiv = styled.div`
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+`;
+
 const VideoElm = styled.video`
     position: absolute;
     left: 0;
@@ -74,12 +86,12 @@ const VideoElm = styled.video`
     object-fit: cover;
 `;
 
+
 export default function Main() {
 
     const setFooter = useSetRecoilState(footerAtom);
 
     const [background,setBackground] = useState<string[]>([]);
-    const [change,setChange] = useState('/video/main01.mp4');
     const [bgIndex,setBgIndex] = useState(0);
 
     // 영상 데이터 가져오기
@@ -91,15 +103,12 @@ export default function Main() {
         .then(({data})=>{
             const {main} = data;
             setBackground(main.image);
-            setChange(main.image[0]);
         })
         .catch(e=>{
             console.log(e);
         })
 
     },[]);
-
-
 
     // 배경화면 클릭
     const onClick = ()=>{
@@ -110,16 +119,54 @@ export default function Main() {
             setBgIndex(bgIndex + 1);
         }
 
-        setChange(background[bgIndex]);        
-
     }
+
+    const tbxRef = useRef<HTMLDListElement>(null);
+    useGSAP(()=>{
+
+        if(!tbxRef.current) return;
+
+        const tl = gsap.timeline();
+
+        tl
+        .fromTo(tbxRef.current.querySelector('dt'),{
+            y : 50,
+            opacity : 0
+        },{
+            y : 0,
+            opacity : 1
+        })
+        .fromTo(tbxRef.current.querySelector('dd'),{
+            y : 50,
+            opacity : 0
+        },{
+            y : 0,
+            opacity : 1
+        },">-=50%")
+        
+
+    },[tbxRef.current]);
 
     return (
         <Wrapper 
             onClick={onClick}
         >
-            <VideoElm src={change} loop={true} autoPlay={true} muted={true} playsInline={true} />
-            <Tbx>
+            <VideoDiv>
+                {
+                    background.map((e,i)=>
+                        <VideoElm 
+                            key={i} 
+                            src={e} 
+                            loop={true} 
+                            autoPlay={true} 
+                            muted={true} 
+                            playsInline={true} 
+                            style={{opacity : bgIndex === i ? 1 : 0}}
+                        />
+                    )
+                }
+            </VideoDiv>
+            <Tbx ref={tbxRef}>
                 <dt>
                     <img src="/image/main/logo.png" alt=""/>
                 </dt>
