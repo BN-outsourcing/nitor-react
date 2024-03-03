@@ -5,6 +5,8 @@ import axios from "axios";
 import { footerAtom } from "../Atom/footer";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { useTranslation } from "react-i18next";
+
 
 const Wrapper = styled.div`
     display: flex;
@@ -67,7 +69,6 @@ const Tbx = styled.dl`
 
 `;
 
-
 const VideoDiv = styled.div`
     position: absolute;
     left: 0;
@@ -86,8 +87,9 @@ const VideoElm = styled.video`
     object-fit: cover;
 `;
 
-
 export default function Main() {
+
+    const {t} = useTranslation();
 
     const setFooter = useSetRecoilState(footerAtom);
 
@@ -172,6 +174,7 @@ export default function Main() {
                 </dt>
                 <dd>
                     for you <span>&</span> <i>our inspiration</i>
+                    {t('Test')}
                 </dd>
             </Tbx>
         </Wrapper>

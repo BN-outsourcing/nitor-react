@@ -24,6 +24,9 @@ const OverMenu = styled.div`
     transition: transform .4s;
     overflow: hidden;
 
+    &::-webkit-scrollbar {width: 8px;}
+    &::-webkit-scrollbar-thumb {background-color: #2f3542; border-radius: 10px;}
+
     &.act {
         transform: translateY(0);
     }
@@ -105,8 +108,10 @@ const Card = styled.div`
     
     > div {
         flex: 1;
+        width: 100%;
         border-radius: 20px;
         max-width: 450px;
+        margin: 0 auto;
         position: relative;
         cursor: pointer;
         background-color: #fff;

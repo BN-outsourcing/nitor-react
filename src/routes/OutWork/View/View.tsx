@@ -9,6 +9,8 @@ import { useSetRecoilState } from "recoil";
 import { footerAtom } from "../../../Atom/footer";
 import { Navigation } from "swiper/modules";
 import gsap from "gsap";
+import { getTrigger } from "../../../lib/gsap";
+import { useGSAP } from "@gsap/react";
 
 const ViewLayout = styled.div`
     padding: 225px 0 150px;
@@ -393,7 +395,6 @@ export default function View() {
             })
 
         }
-
     }
 
     const slideOver = ()=>{
@@ -415,7 +416,7 @@ export default function View() {
 
     // 타이틀 부분 애니메이션
     const titleRef = useRef(null);
-    /* useGSAP(()=>{
+    useGSAP(()=>{
         
         if(titleRef.current){
     
@@ -466,11 +467,11 @@ export default function View() {
             
         }
 
-    },{dependencies : [titleRef.current], scope : titleRef}); */
+    },{dependencies : [titleRef.current], scope : titleRef});
 
     // 슬라이드 부분 애니메이션
     const slideRef = useRef(null);
-    /* useGSAP(()=>{
+    useGSAP(()=>{
 
         if(slideRef.current){
 
@@ -489,12 +490,12 @@ export default function View() {
 
         }
 
-    },{dependencies : [slideRef.current], scope : slideRef}); */
+    },{dependencies : [slideRef.current], scope : slideRef});
 
 
     // 페이징
     const pageRef = useRef(null);
-    /* useGSAP(()=>{
+    useGSAP(()=>{
 
         if(pageRef.current){
 
@@ -513,11 +514,11 @@ export default function View() {
 
         }
 
-    },{dependencies : [pageRef.current], scope : pageRef}); */
+    },{dependencies : [pageRef.current], scope : pageRef});
 
     // back
     const BackRef = useRef(null);
-    /* useGSAP(()=>{
+    useGSAP(()=>{
 
         if(BackRef.current){
 
@@ -536,7 +537,7 @@ export default function View() {
 
         }
 
-    },{dependencies : [BackRef.current], scope : BackRef}); */
+    },{dependencies : [BackRef.current], scope : BackRef});
 
     return (
         <>
@@ -614,14 +615,17 @@ export default function View() {
                                         gsap.set(target,{
                                             top : cosY - (target.clientHeight / 2),
                                             left : cosX - (target.clientHeight / 2)
-                                        })
+                                        });
                             
                                     }
                                 }}
                             >
                                 {
                                     data.image.map((e,i)=>
-                                        <SwiperSlide key={i*2} onMouseOver={slideOver}>
+                                        <SwiperSlide 
+                                            key={i*2} 
+                                            onMouseOver={slideOver}
+                                        >
                                             <Img style={{backgroundImage : `url(${e})`}}></Img>
                                         </SwiperSlide>
                                     )

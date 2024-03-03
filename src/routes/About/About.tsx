@@ -6,6 +6,8 @@ import { useEffect, useRef } from "react";
 import { useSetRecoilState } from "recoil";
 import { footerAtom } from "../../Atom/footer";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import TextPlugin from "gsap/TextPlugin";
 
 const AboutLayout = styled.div`
     background-color: #000000;
@@ -59,6 +61,8 @@ const Curosr = styled.div`
     }
 
 `;
+
+gsap.registerPlugin(ScrollTrigger,TextPlugin);
 
 export default function About() {
 
