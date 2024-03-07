@@ -174,7 +174,6 @@ export default function Main() {
                 </dt>
                 <dd>
                     for you <span>&</span> <i>our inspiration</i>
-                    {t('Test')}
                 </dd>
             </Tbx>
         </Wrapper>

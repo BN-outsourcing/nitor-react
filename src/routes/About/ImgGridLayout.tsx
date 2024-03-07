@@ -2,13 +2,13 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
 import styled from "styled-components";
-import { getTrigger } from "../../lib/gsap";
+import { getTrigger } from "../../utils/gsap";
 
 const ImgGrid = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 95%;
+    width: ${100 - (100/1920*100)}%;
     margin: 0 auto;
     gap: 100px;
     margin-top: 100px;
@@ -134,11 +134,9 @@ export default function ImgGridLayout() {
             });
 
             gsap.fromTo(gridRef.current.querySelector('.right p'),{
-                y : 50,
-                opacity : 0
+                filter : "blur(10px)"
             },{
-                y : 0,
-                opacity : 1,
+                filter : "blur(0px)",
                 scrollTrigger : getTrigger(gridRef.current.querySelector('.right p'))
             });
 

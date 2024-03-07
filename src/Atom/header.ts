@@ -2,5 +2,5 @@ import { atom } from "recoil";
 
 export const headerAtom = atom({
     key : "headerAtom",
-    default : false
+    default : true
 })

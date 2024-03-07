@@ -2,84 +2,20 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
 import styled from "styled-components"
-import { getTrigger } from "../../lib/gsap";
+import { getTrigger } from "../../utils/gsap";
+import SubLayoutTit from "../../components/Layout/SubLayout";
+import Cricle, { CircleProps } from "../../components/About/Circle";
 
 const Imb = styled.div`
     position: relative;
-    .img {
-        position: absolute;
-        right: calc(130/1600*100%);
-        top: calc(60/1460*100%);
-        width: calc(620*100/1920*1vw);
-        cursor: none;
-        border-radius: 1000px;
-    }
-
-    @media screen and (max-width: 1024px) {
-        .img {
-            top: 1.5%;
-            right: 0;
-        }
-    }
-
 `;
 
-const Tit = styled.h2`
-    font-size: 120px;
-    line-height: calc(140/120);
-    font-family: 'Neue Haas Grotesk Display Pro';
-    font-weight: 500;
-    text-transform: uppercase;
-    position: relative;
-    z-index: 2;
-    pointer-events: none;
 
-    div {
-        overflow: hidden;
-    }
 
-    span {
-        font-family: 'Big Daily Short';
-    }
-    i {
-        font-style: italic;
-    }
-
-    @media screen and (max-width : 1480px) {
-        
-        font-size: 100px;
-
-    }
-
-    @media screen and (max-width : 1280px) {
-        
-        font-size: 90px;
-
-    }
-
-    @media screen and (max-width : 1024px) {
-        
-        font-size: 70px;
-
-    }
-
-    @media screen and (max-width : 820px) {
-        
-        font-size: 42px;
-
-    }
-
-    @media screen and (max-width : 480px) {
-        
-        font-size: 32px;
-
-    }
-
-`;
 
 const Search = styled.div`
 
-    margin-top: 80px;
+    margin-top: 180px;
     max-width: 400px;
 
     .seb {
@@ -137,7 +73,7 @@ const Search = styled.div`
 
     @media screen and (max-width : 1280px) {
         
-        margin-top: 80px;
+        margin-top: 100px;
         width: 60%;
 
         .seb,
@@ -160,7 +96,7 @@ const Search = styled.div`
 
     @media screen and (max-width : 820px) {
         
-        margin-top: 60px;
+        margin-top: 80px;
         width: 100%;
 
         .seb {
@@ -178,7 +114,7 @@ const Search = styled.div`
 
     @media screen and (max-width : 480px) {
         
-        margin-top: 40px;
+        margin-top: 60px;
 
         .seb,
         .sound,
@@ -198,7 +134,6 @@ const Tbx = styled.div`
     box-sizing: border-box;
     margin-left: auto;
     text-align: right;
-    overflow: hidden;
 
     .inline {
 
@@ -216,10 +151,6 @@ const Tbx = styled.div`
 
         .right {
             text-align: right;
-        }
-
-        .fade {
-            overflow: hidden;
         }
         
         .desc {
@@ -263,70 +194,8 @@ const Tbx = styled.div`
 
 `;
 
-type Props = {
-    cursorRef : React.RefObject<HTMLDivElement>
-}
 
-export default function ImbLayout({cursorRef} : Props) {
-
-    const imgRef = useRef(null);
-    useGSAP(()=>{
-
-        if(imgRef.current){
-
-            const target = imgRef.current as HTMLElement;
-
-            gsap.fromTo(target,{
-                filter : "blur(5px)"
-            },{
-                filter : "blur(0px)",
-                ease : "back.inOut(1.4)",
-                duration : 0.8,
-                scrollTrigger : {
-                    trigger : target,
-                    start : "top bottom-=15%"
-                }
-            })
-
-        }
-
-    },[imgRef.current]);
-
-    const imgOver = ()=>{
-        gsap.to(cursorRef.current,{
-            opacity : 1
-        })
-    }
-    const imgLeave = ()=>{
-        gsap.to(cursorRef.current,{
-            opacity : 0
-        })
-    }
-
-    const titRef = useRef(null);
-    useGSAP(()=>{
-
-        if(titRef.current){
-
-            const target = titRef.current as HTMLElement;
-
-            target.querySelectorAll('div p').forEach(el=>{
-                gsap.fromTo(el,{
-                    yPercent : 100
-                },{
-                    yPercent : 0,
-                    ease : "back.inOut(1.4)",
-                    duration : 0.8,
-                    scrollTrigger : {
-                        trigger : target,
-                        start : "top bottom-=15%"
-                    }
-                })
-            })
-
-        }
-
-    },[titRef.current]);
+export default function ImbLayout({cursorRef} : CircleProps) {
 
     const searchRef = useRef<HTMLDivElement>(null);
     useGSAP(()=>{
@@ -349,11 +218,9 @@ export default function ImbLayout({cursorRef} : Props) {
             scrollTrigger : getTrigger(searchRef.current.querySelector('.seb'))
         })
         typingTl.fromTo(searchRef.current.querySelector('.seb'),{
-            y : 50,
-            opacity : 0
+            filter : "blur(10px)"
         },{
-            y : 0,
-            opacity : 1,
+            filter : "blur(0px)",
             onComplete : ()=>{
                 if(!searchRef.current) return;
                 
@@ -370,21 +237,17 @@ export default function ImbLayout({cursorRef} : Props) {
         });
 
         typingTl.fromTo(searchRef.current.querySelector('.sound'),{
-            y : 50,
-            opacity : 0
+            filter : "blur(10px)"
         },{
-            y : 0,
-            opacity : 0.6
+            filter : "blur(0px)"
         },">-=50%");
 
         searchRef.current.querySelectorAll('dl').forEach(el=>{
 
             typingTl.fromTo(el,{
-                y : 50,
-                opacity : 0
+                filter : "blur(10px)"
             },{
-                y : 0,
-                opacity : 1
+                filter : "blur(0px)"
             },">-=50%");
 
         });
@@ -392,40 +255,36 @@ export default function ImbLayout({cursorRef} : Props) {
 
     },[searchRef.current]);
 
-    const tbxRef = useRef(null);
+    const tbxRef = useRef<HTMLDivElement>(null);
     useGSAP(()=>{
 
         if(tbxRef.current){
 
-            const target = tbxRef.current as HTMLElement;
+            const target = tbxRef.current;
 
             const fadeTl = gsap.timeline({
                 scrollTrigger : getTrigger(target)
             })
             fadeTl.fromTo(target.querySelector('.right'),{
-                x : 50,
-                opacity : 0
+                filter : "blur(10px)"
             },{
-                x : 0,
-                opacity : 1
+                filter : "blur(0)"
             })
-            target.querySelectorAll('.fade p').forEach(el=>{
+
+            target.querySelectorAll('div').forEach(el=>{
                 fadeTl.fromTo(el,{
-                    yPercent : 100,
+                    filter : "blur(10px)"
                 },{
-                    yPercent : 0,
+                    filter : "blur(0px)"
                 },">-=50%")
             })
 
 
             gsap.fromTo(target.querySelector('.desc'),{
-                y : 50,
-                opacity : 0,
+                filter : "blur(10px)"
             },{
-                y : 0,
-                opacity : 1,
-                ease : "back.inOut(1.4)",
-                duration : 0.8,
+                filter : "blur(0px)",
+                duration : 0.4,
                 scrollTrigger : getTrigger(target.querySelector('.desc'))
             })
 
@@ -438,19 +297,12 @@ export default function ImbLayout({cursorRef} : Props) {
 
         <Imb>
 
-            <div 
-                className="img"
-                ref={imgRef}
-                onMouseOver={imgOver}
-                onMouseLeave={imgLeave}
-            >
-                <img src="/image/about/img.png" alt=""/>
-            </div>
+            <Cricle cursorRef={cursorRef}/>
 
-            <Tit ref={titRef}>
-                <div><p>wanna e<span>xp</span>erience</p></div>
-                <div><p><i>who</i> we are<span>?</span></p></div>
-            </Tit>
+            <SubLayoutTit>
+                <p>wanna e<span>xp</span>erience</p>
+                <p><i>who</i> we are<span>?</span></p>
+            </SubLayoutTit>
 
             <Search ref={searchRef}>
                 <div className="seb">
@@ -474,8 +326,8 @@ export default function ImbLayout({cursorRef} : Props) {
             <Tbx ref={tbxRef}>
                 <div className="inline">
                     <p className="right">In all areas where</p>
-                    <div className="fade"><p>visual communication is needed in our daily lives,</p></div>
-                    <div className="fade"><p>NITOR wants to spread that <i>light</i> constantly.</p></div>
+                    <div>visual communication is needed in our daily lives,</div>
+                    <div>NITOR wants to spread that <i>light</i> constantly.</div>
                     <p className="desc">
                         우리의 일상 속 비주얼 커뮤니케이션이 필요한 모든 분야에<br/>
                         NITOR는 그 빛을 끊임없이 확산시키고자 합니다.

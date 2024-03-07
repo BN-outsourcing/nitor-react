@@ -2,75 +2,66 @@ import styled from "styled-components"
 import ImbLayout from "./ImbLayout";
 import ImgGridLayout from "./ImgGridLayout";
 import GridLayout from "./GridLayout";
-import { useEffect, useRef } from "react";
-import { useSetRecoilState } from "recoil";
-import { footerAtom } from "../../Atom/footer";
+import { useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import TextPlugin from "gsap/TextPlugin";
-
-const AboutLayout = styled.div`
-    background-color: #000000;
-    color: #fff;
-    padding: 175px 0 240px;
-    background-image: url(/image/about/background.jpg);
-    background-repeat: no-repeat;
-    background-position: bottom;
-    background-size: cover;
-    position: relative;
-
-    @media screen and (max-width : 820px){
-        padding: 145px 0 80px;
-    }
-
-`;
+import { useGSAP } from "@gsap/react";
+import { SubLayout } from "../../components/Layout/SubLayout";
+import { CursorType1 } from "../../components/Cursor";
 
 const Wrppaer = styled.div`
     max-width: 1600px;
     margin: 0 auto;
-    width: 95%;
+    width: ${100 - (100/1920*100)}%;
 `;
 
-const Curosr = styled.div`
-    font-family: "Pretendard";
-    font-size: 18px;
-    letter-spacing: -0.025em;
-    line-height: calc(54/18);
-    border-radius: 1000px;
-    backdrop-filter: blur(10px);
-    background-color: rgba(255,255,255,0.5);
+const ScrollDown = styled.div`
     position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 55;
-    width: calc(270/18*1em);
-    height: calc(54/18*1em);
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    font-family: 'Neue Haas Grotesk Display Pro';
+    z-index: 999;
+    color: #fff;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    pointer-events: none;
-    box-shadow: 5px 5px 7px 0px rgba(0, 0, 0, 0.2);
-    opacity: 0;
-
-    @media screen and (max-width : 1280px) {
-        font-size: 16px;
+    transition: opacity.4s;
+    i {
+        font-size: 22px;
+        letter-spacing: -0.025em;
+        margin-top: calc(15/22*1em);
     }
-
-    @media screen and (max-width : 820px) {
-        font-size: 14px;
+    &.act {
+        opacity: 0;
     }
-
 `;
 
 gsap.registerPlugin(ScrollTrigger,TextPlugin);
 
 export default function About() {
 
-    const setFooter = useSetRecoilState(footerAtom);
+    const [sdOpacity,setSdOpacity] = useState(false);
+    const scrollRef = useRef<HTMLDivElement>(null);
 
-    useEffect(()=>{
-        setFooter('about');
-    });
+    const subRef = useRef<HTMLDivElement>(null);
+    useGSAP(()=>{
+
+        ScrollTrigger.create({
+            trigger : subRef.current,
+            start : "top+=10 top",
+            // markers : true,
+            onEnter : ()=>{
+                setSdOpacity(true);
+            },
+            onLeaveBack : ()=>{
+                setSdOpacity(false);
+            }
+        })
+
+    },[subRef.current]);
 
     const curosrRef = useRef<HTMLDivElement>(null);
     const onMove = (e : React.MouseEvent<HTMLElement>)=>{
@@ -80,17 +71,39 @@ export default function About() {
         if(curosrRef.current){
 
             gsap.set(curosrRef.current,{
-                top : cosY - (curosrRef.current?.clientHeight/2),
-                left : cosX - (curosrRef.current?.clientWidth/2)
+                top : cosY,
+                left : cosX
             });
 
         }
 
     }
 
+    useGSAP(()=>{
+        
+        if(!scrollRef.current) return;
+
+        gsap.fromTo(scrollRef.current.querySelector('i'),{
+            y : 10
+        },{
+            y : 0,
+            yoyo : true,
+            ease : "power1.inOut",
+            repeat : -1
+        })
+
+    },[scrollRef.current]);
+
     return (
         <>
-            <AboutLayout
+            <ScrollDown ref={scrollRef} className={sdOpacity ? "act" : ""}>
+                SCROLLDOWN
+                <i  className="xi-arrow-down"></i>
+            </ScrollDown>
+
+            <SubLayout
+                ref={subRef}
+                $page="about"
                 onMouseMove={(e)=>onMove(e)}
             >
                 
@@ -106,10 +119,11 @@ export default function About() {
                     <GridLayout/>
                 </Wrppaer>  
 
-            </AboutLayout>
-            <Curosr 
+            </SubLayout>
+            <CursorType1
                 ref={curosrRef}
-            >당신과 우리의 영감을 위해 💡</Curosr>
+            >당신과 우리의 영감을 위해 <img src="/image/icon/light.png" alt="" />
+            </CursorType1>
         </>
     )
 

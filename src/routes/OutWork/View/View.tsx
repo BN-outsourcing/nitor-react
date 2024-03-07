@@ -3,14 +3,13 @@ import { ColorP } from "../../../components/p";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import { Item } from "../List/List";
 import axios from "axios";
-import { useSetRecoilState } from "recoil";
-import { footerAtom } from "../../../Atom/footer";
 import { Navigation } from "swiper/modules";
 import gsap from "gsap";
-import { getTrigger } from "../../../lib/gsap";
+import { blurAnimtaion, getTrigger } from "../../../utils/gsap";
 import { useGSAP } from "@gsap/react";
+import { Item } from "../../../types/axiosType";
+import { useTranslation } from "react-i18next";
 
 const ViewLayout = styled.div`
     padding: 225px 0 150px;
@@ -24,9 +23,8 @@ const ViewLayout = styled.div`
 
 const Wrapper = styled.div`
     max-width: 1600px;
-    width: 95%;
+    width: ${100 - (100/1920*100)}%;
     margin: 0 auto;
-    overflow: hidden;
 `;
 
 const TitleBox = styled.div`
@@ -36,10 +34,6 @@ const TitleBox = styled.div`
         font-weight: 500;
         font-size: 18px;
         text-transform: uppercase;
-        overflow: hidden;
-        span {
-            display: inline-block;
-        }
     }
 
     dl {
@@ -53,12 +47,6 @@ const TitleBox = styled.div`
             font-size: 72px;
             line-height: calc(84/72);
             white-space: nowrap;
-            p {
-                overflow: hidden;
-                span {
-                    display: inline-block;
-                }
-            }
         }
         dd {
             font-weight: 400;
@@ -161,7 +149,30 @@ const Img = styled.div`
 const SlideBox = styled.div`
     margin-top: 80px;
     position: relative;
-    cursor: none;
+    cursor: grab;
+
+    .swiper-slide {
+        position: relative;
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(000,000,000,0.3);
+            opacity: 1;
+            transition: opacity .4s;
+        }
+
+        &.swiper-slide-active {
+            &::after {
+                opacity: 0;
+            }
+        }
+
+    }
+
 `;
 
 const Page = styled.div`
@@ -263,14 +274,14 @@ const Button = styled.button<ButtonType>`
         switch(props.$type){
             case "right" :
                 return css`
-                    right : calc(100*100/1920*1vw);
+                    right : calc(215*100/1920*1vw);
                     i {
                         margin-left: 10px;
                     }
                 `;
             default :
                 return css`
-                    left: calc(100*100/1920*1vw);
+                    left: calc(215*100/1920*1vw);
                     i {
                         margin-right: 10px;
                     }
@@ -329,8 +340,7 @@ const Drag = styled.div`
     letter-spacing: -0.025em;
     font-family: "Pretendard";
     pointer-events: none;
-    transform: rotate(-30deg);
-    opacity: 0;
+    transform: rotate(-30deg) scale(0);
     &::after {
         content: '';
         display: block;
@@ -355,8 +365,8 @@ const Drag = styled.div`
 export default function View() {
 
     const {id} = useParams();
-    const setFooter = useSetRecoilState(footerAtom);
     const [data,setData] = useState<Item | null>(null);
+    const {i18n} = useTranslation();
 
     const [index,setIndex] = useState('00');
     const [last,setLast] = useState('00');
@@ -364,10 +374,6 @@ export default function View() {
     const nextRef = useRef(null);
     const prevRef = useRef(null);
     const dragRef = useRef(null);
-
-    useEffect(()=>{
-        setFooter('outwork');
-    },[]);
 
     useEffect(()=>{
         axios.get('/api.json')
@@ -390,8 +396,8 @@ export default function View() {
             const cosY = e.clientY;
 
             gsap.set(target,{
-                top : cosY - (target.clientHeight / 2),
-                left : cosX - (target.clientHeight / 2)
+                top : cosY,
+                left : cosX
             })
 
         }
@@ -400,7 +406,9 @@ export default function View() {
     const slideOver = ()=>{
         if(dragRef.current){
             gsap.to(dragRef.current,{
-                opacity : 1
+                scale : 1,
+                rotate : -30,
+                duration : 0.2
             })
         }
     }
@@ -408,7 +416,9 @@ export default function View() {
     const slideLeave = ()=>{
         if(dragRef.current){
             gsap.to(dragRef.current,{
-                opacity : 0
+                scale : 0,
+                rotate : -30,
+                duration : 0.2
             })
         }
     }
@@ -420,34 +430,9 @@ export default function View() {
         
         if(titleRef.current){
     
-            gsap.fromTo('.e-tit span',{
-                yPercent : 100
-            },{
-                yPercent : 0,
-                ease : "back.inOut(1.4)",
-                duration : 0.8,
-                scrollTrigger : getTrigger('.e-tit')
-            });
-
-            gsap.fromTo('.tit dt p span',{
-                yPercent : 100
-            },{
-                yPercent : 0,
-                ease : "back.inOut(1.4)",
-                duration : 0.8,
-                scrollTrigger : getTrigger('.tit dt')
-            })
-
-            gsap.fromTo('.tit dd',{
-                x : 50,
-                opacity : 0
-            },{
-                x : 0,
-                opacity : 1,
-                ease : "back.inOut(1.4)",
-                duration : 0.8,
-                scrollTrigger : getTrigger('.tit dd')
-            })
+            blurAnimtaion('.e-tit',"5px");
+            blurAnimtaion('.tit dt');
+            blurAnimtaion('.tit dd');
 
             const tagTl = gsap.timeline({
                 scrollTrigger : getTrigger('.tag')
@@ -455,12 +440,9 @@ export default function View() {
             gsap.utils.toArray('.tag p').forEach((e,index)=>{
                 const element = e as HTMLElement;
                 tagTl.fromTo(element,{
-                    y : 50,
-                    opacity : 0
+                    filter : `blur(10px)`
                 },{
-                    y : 0,
-                    opacity : 1,
-                    ease : "back.inOut(1.4)",
+                    filter : "blur(0px)",
                     duration : 0.8,
                 },index === 0 ? '' : ">-=50%" );
             });
@@ -477,21 +459,11 @@ export default function View() {
 
             const target = slideRef.current as HTMLElement;
 
-            gsap.fromTo(target,{
-                y : 50,
-                opacity : 0
-            },{
-                y : 0,
-                opacity : 1,
-                ease : "back.inOut(1.4)",
-                duration : 0.8,
-                scrollTrigger : getTrigger(target)
-            })
+            blurAnimtaion(target);
 
         }
 
     },{dependencies : [slideRef.current], scope : slideRef});
-
 
     // 페이징
     const pageRef = useRef(null);
@@ -501,16 +473,7 @@ export default function View() {
 
             const target = pageRef.current as HTMLElement;
 
-            gsap.fromTo(target,{
-                y : 50,
-                opacity : 0
-            },{
-                y : 0,
-                opacity : 1,
-                ease : "back.inOut(1.4)",
-                duration : 0.8,
-                scrollTrigger : getTrigger(target)
-            })
+            blurAnimtaion(target);
 
         }
 
@@ -524,17 +487,7 @@ export default function View() {
 
             const target = BackRef.current as HTMLElement;
 
-            gsap.fromTo(target,{
-                y : 50,
-                opacity : 0
-            },{
-                y : 0,
-                opacity : 1,
-                ease : "back.inOut(1.4)",
-                duration : 0.8,
-                scrollTrigger : getTrigger(target)
-            })
-
+            blurAnimtaion(target);
         }
 
     },{dependencies : [BackRef.current], scope : BackRef});
@@ -547,17 +500,12 @@ export default function View() {
                     <>
                         <Wrapper>
                             <TitleBox ref={titleRef}>
-                                <p className="e-tit"><span>{data?.eng}</span></p>
+                                <p className="e-tit">{data?.smallText}</p>
                                 <dl className="tit">
-                                    <dt>
-                                        {
-                                            data.title.split('<br/>').map((line,index)=>(
-                                                <p key={index}><span>{line}</span></p>
-                                            ))
-                                        }
+                                    <dt dangerouslySetInnerHTML={{__html : data[i18n.language].title}}>
                                     </dt>
                                     <dd 
-                                        dangerouslySetInnerHTML={{__html : data.desc}}
+                                        dangerouslySetInnerHTML={{__html : data[i18n.language].desc}}
                                     />
                                 </dl>
                                 <div className="tag">
@@ -578,23 +526,24 @@ export default function View() {
                                 onMouseOver={slideLeave}
                             ><i className="xi-arrow-left"></i> Prev</Button>
                             <Swiper
-                                spaceBetween={15}
-                                slidesPerView={1.2}
+                                spaceBetween={20}
+                                slidesPerView={1.1}
                                 centeredSlides={true}
                                 loop={true}
                                 modules={[Navigation]}
+                                speed={800}
                                 navigation = {{
                                     prevEl : prevRef.current,
                                     nextEl : nextRef.current
                                 }}
                                 breakpoints={{
                                     821 : {
-                                        spaceBetween : 25,
-                                        slidesPerView : 1.5
+                                        spaceBetween : 50,
+                                        slidesPerView : 1.33
                                     },
                                     1025 : {
-                                        spaceBetween : `${50/1920*100}%`,
-                                        slidesPerView : 1.2
+                                        spaceBetween : `${100/1920*100}%`,
+                                        slidesPerView : 1.33
                                     },
                                 }}
                                 onInit={(swiper)=>{
@@ -613,8 +562,8 @@ export default function View() {
                                         const cosY = event.clientY;
                             
                                         gsap.set(target,{
-                                            top : cosY - (target.clientHeight / 2),
-                                            left : cosX - (target.clientHeight / 2)
+                                            top : cosY,
+                                            left : cosX
                                         });
                             
                                     }

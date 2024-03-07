@@ -1,53 +1,44 @@
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
-import { getTrigger } from "../../../lib/gsap";
+import { blurAnimtaion, getTrigger } from "../../../utils/gsap";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { ColorP } from "../../../components/p";
-import { Item } from "./List";
 import gsap from "gsap";
+import { useTranslation } from "react-i18next";
+import { Item } from "../../../types/axiosType";
 
 const Grid = styled.div`
-    margin-top: 110px;
+    margin-top: 115px;
     margin-right: auto;
     display: grid;
     grid-template-columns: repeat(3,1fr);
     box-sizing: border-box;
-    width: 90%;
-    max-width: 1600px;
     gap: 25px 35px;
-
-    @media screen and (max-width : 1280px) {
-
-    }
 
     @media screen and (max-width : 1024px) {
         
         grid-template-columns: repeat(2,1fr);
+        gap: 50px 35px;
 
     }
 
     @media screen and (max-width : 820px) {
-        width: 100%;
         margin-top: 80px;
-    }
-
-    @media screen and (max-width : 480px) {
-        
+        gap: 80px 35px;
         grid-template-columns: repeat(1,1fr);
-
     }
 
 `;
 
-const Item = styled.div`
+const Items = styled.div`
 
     position: relative;
     border-radius: 20px;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    cursor: none;
+    cursor: pointer;
 
     &::before {
         position: absolute;
@@ -64,7 +55,7 @@ const Item = styled.div`
     &::after {
         content: '';
         display: block;
-        padding-bottom: calc(640/510*100%);
+        padding-bottom: calc(680/560*100%);
     }
 
     > p {
@@ -72,7 +63,7 @@ const Item = styled.div`
         top: calc(25/20*1em);
         left: 50%;
         transform: translateX(-50%);
-        font-size: calc(20*100/1920*1vw);
+        font-size: 20px;
         text-transform: uppercase;
         font-family: 'Neue Haas Grotesk Display Pro';
         font-weight: 500;
@@ -89,17 +80,15 @@ const Item = styled.div`
         dt {
             display: flex;
             gap: 9px;
-
             p {
-                font-size: calc(14*100/1920*1vw);
+                font-size: 14px;
             }
-
         }
 
         dd {
-            margin-top: calc(23/42*1em);
+            margin-top: calc(20/42*1em);
             font-family: "Pretendard";
-            font-size: calc(42*100/1920*1vw);
+            font-size: 42px;
             font-weight: 500;
             line-height: calc(54/42);
         }
@@ -150,17 +139,17 @@ const Item = styled.div`
     @media screen and (max-width : 1280px) {
 
         > p {
-            font-size: calc(20*100/1280*1vw);
+            font-size: 16px;
         }
 
         dl {
             dt {
                 p {
-                    font-size: calc(14*100/1280*1vw);
+                    font-size: 12px;
                 }
             }
             dd {
-                font-size: calc(32*100/1280*1vw);
+                font-size: 30px;
             }
         }
     }
@@ -178,7 +167,7 @@ const Item = styled.div`
                 }
             }
             dd {
-                font-size: calc(48*100/1280*1vw);
+                font-size: 32px;
             }
         }
 
@@ -186,24 +175,28 @@ const Item = styled.div`
 
     @media screen and (max-width : 820px) {
 
+        border-radius: 15px;
+
         > p {
-            font-size: calc(20*100/820*1vw);
+            font-size: 20px;
         }
 
         dl {
             dt {
                 p {
-                    font-size: 10px;
+                    font-size: 14px;
                 }
             }
             dd {
-                font-size: calc(42*100/1024*1vw);
+                font-size: 42px;
             }
         }
 
     }
 
     @media screen and (max-width : 480px) {
+
+        border-radius: 10px;
 
         > p {
             font-size: 16px;
@@ -216,7 +209,7 @@ const Item = styled.div`
                 }
             }
             dd {
-                font-size: 28px;
+                font-size: 26px;
             }
         }
 
@@ -232,6 +225,7 @@ type Props = {
 export default function ListView({item,glass} : Props) {
 
     const navigate = useNavigate();
+    const {i18n} = useTranslation();
 
     // 클릭 이벤트
     const itemOnClick = (id : number)=>{
@@ -243,8 +237,9 @@ export default function ListView({item,glass} : Props) {
         if(glass.current){
             const target = glass.current as HTMLElement;
             gsap.to(target,{
-                opacity : 1,
-                rotate : -15
+                scale : 1,
+                rotate : -15,
+                duration : 0.4,
             });
         }
     }
@@ -252,12 +247,9 @@ export default function ListView({item,glass} : Props) {
         if(glass.current){
             const target = glass.current as HTMLElement;
             gsap.to(target,{
-                opacity : 0,
-                onComplete : ()=>{
-                    gsap.set(target,{
-                        rotate : 0
-                    })
-                }
+                scale : 0,
+                rotate : -15,
+                duration : 0.4,
             });
         }
     }
@@ -269,16 +261,7 @@ export default function ListView({item,glass} : Props) {
 
             gsap.utils.toArray('.item').forEach(el=>{
                 const item = el as HTMLElement;
-                gsap.fromTo(item,{
-                    y : 50,
-                    opacity : 0
-                },{
-                    y: 0,
-                    opacity : 1,
-                    ease : "back.inOut(1.4)",
-                    duration : 0.8,
-                    scrollTrigger : getTrigger(item)
-                })
+                blurAnimtaion(item);
             })
 
         }
@@ -291,38 +274,104 @@ export default function ListView({item,glass} : Props) {
             
             {
                 item.map((el)=>
-                    <Item
-                        className="item"
-                        key={el.id}
-                        onClick={()=>itemOnClick(el.id)} 
-                        style={{backgroundImage : `url(${el.image[0]})`}}
-                        onMouseOver={onOver}
-                        onMouseLeave={onLeave}
-                    >
-                        <p>{el.eng}</p>
-                        <dl>
-                            <dt>
-                                {
-                                    el.tag.map((el,index)=>
-                                        {
-                                            if(typeof el === "object"){
+                    <>
+                        <Items
+                            className="item"
+                            key={el.id}
+                            onClick={()=>itemOnClick(el.id)} 
+                            style={{backgroundImage : `url(${el.image[0]})`}}
+                            onMouseOver={onOver}
+                            onMouseLeave={onLeave}
+                        >
+                            <p>{el.smallText}</p>
+                            <dl>
+                                <dt>
+                                    {
+                                        el.tag.map((el,index)=>
+                                            {
+                                                if(typeof el === "object"){
 
-                                                return (
-                                                    <ColorP 
-                                                        key={index} 
-                                                        className={el.color}
-                                                        style={{transitionDelay : `${0.2*index}s`}}
-                                                    >{el.name}</ColorP>
-                                                )
-                                                
+                                                    return (
+                                                        <ColorP 
+                                                            key={index} 
+                                                            className={el.color}
+                                                            style={{transitionDelay : `${0.2*index}s`}}
+                                                        >{el.name}</ColorP>
+                                                    )
+                                                    
+                                                }
                                             }
-                                        }
-                                    )
-                                }
-                            </dt>
-                            <dd dangerouslySetInnerHTML={{__html : el.title}} />
-                        </dl>
-                    </Item>
+                                        )
+                                    }
+                                </dt>
+                                <dd dangerouslySetInnerHTML={{__html : el[i18n.language].title}} />
+                            </dl>
+                        </Items>
+                        <Items
+                            className="item"
+                            key={el.id}
+                            onClick={()=>itemOnClick(el.id)} 
+                            style={{backgroundImage : `url(${el.image[0]})`}}
+                            onMouseOver={onOver}
+                            onMouseLeave={onLeave}
+                        >
+                            <p>{el.smallText}</p>
+                            <dl>
+                                <dt>
+                                    {
+                                        el.tag.map((el,index)=>
+                                            {
+                                                if(typeof el === "object"){
+
+                                                    return (
+                                                        <ColorP 
+                                                            key={index} 
+                                                            className={el.color}
+                                                            style={{transitionDelay : `${0.2*index}s`}}
+                                                        >{el.name}</ColorP>
+                                                    )
+                                                    
+                                                }
+                                            }
+                                        )
+                                    }
+                                </dt>
+                                <dd dangerouslySetInnerHTML={{__html : el[i18n.language].title}} />
+                            </dl>
+                        </Items>
+                        <Items
+                            className="item"
+                            key={el.id}
+                            onClick={()=>itemOnClick(el.id)} 
+                            style={{backgroundImage : `url(${el.image[0]})`}}
+                            onMouseOver={onOver}
+                            onMouseLeave={onLeave}
+                        >
+                            <p>{el.smallText}</p>
+                            <dl>
+                                <dt>
+                                    {
+                                        el.tag.map((el,index)=>
+                                            {
+                                                if(typeof el === "object"){
+
+                                                    return (
+                                                        <ColorP 
+                                                            key={index} 
+                                                            className={el.color}
+                                                            style={{transitionDelay : `${0.2*index}s`}}
+                                                        >{el.name}</ColorP>
+                                                    )
+                                                    
+                                                }
+                                            }
+                                        )
+                                    }
+                                </dt>
+                                <dd dangerouslySetInnerHTML={{__html : el[i18n.language].title}} />
+                            </dl>
+                        </Items>
+                    </>
                 )
             }
 

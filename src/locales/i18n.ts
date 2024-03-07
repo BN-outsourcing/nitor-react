@@ -16,8 +16,8 @@ i18n
                 }
             }
         },
-        lng : "en", // 기본 설정
-        fallbackLng : "en", // 파일이 없을경우 기본 설정
+        lng : "ko", // 기본 설정
+        fallbackLng : "ko", // 파일이 없을경우 기본 설정
         interpolation : {
             escapeValue : false // HTML을 이스케이프하여 XSS(Cross-site Scripting) 공격을 방지
         }

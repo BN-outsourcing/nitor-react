@@ -6,11 +6,16 @@ import "./asset/font/NeueHaasDisplay/stylesheet.css";
 import 'swiper/css';
 import { RecoilRoot } from 'recoil';
 import './locales/i18n'; // 다국어 적용
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RecoilRoot>
-      <App />
-    </RecoilRoot>
+    <QueryClientProvider client={queryClient}>
+      <RecoilRoot>
+        <App />
+      </RecoilRoot>
+    </QueryClientProvider>
   </React.StrictMode>
 )
