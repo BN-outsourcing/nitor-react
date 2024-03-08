@@ -4,17 +4,40 @@ import SubLayoutTit from "../../components/Layout/SubLayout";
 import { getTrigger } from "../../utils/gsap";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { useTranslation } from "react-i18next";
 
 
-const Wrapper = styled.div`
-    margin-top: 275px;
+type WrapperProps = {
+    $language? : string
+}
+
+const Wrapper = styled.div<WrapperProps>`
+    margin-top: ${props=>{
+        if(props.$language === "ko") {
+            return 275
+        }else{
+            return 525
+        }
+    }}px;
     
     @media screen and (max-width: 1024px) {
-        margin-top: 205px;
+        margin-top: ${props=>{
+            if(props.$language === "ko") {
+                return 205
+            }else{
+                return 325
+            }
+        }}px;
     }
 
     @media screen and (max-width: 820px) {
-        margin-top: 175px;
+        margin-top: ${props=>{
+            if(props.$language === "ko") {
+                return 175
+            }else{
+                return 225
+            }
+        }}px;
     }
 
 `;
@@ -83,6 +106,9 @@ const Item = styled.div`
             font-family: "Pretendard";
             line-height: normal;
             word-break: keep-all;
+            span {
+                font-size: 14px;
+            }
             + li {
                 margin-top: calc(15/18*1em);
             }
@@ -131,6 +157,8 @@ const Item = styled.div`
 
 
 export default function GridLayout() {
+
+    const {t,i18n} = useTranslation();
 
     const gridRef = useRef<HTMLDivElement>(null);
     useGSAP(()=>{
@@ -207,7 +235,7 @@ export default function GridLayout() {
 
     return (
 
-        <Wrapper>
+        <Wrapper $language={i18n.language}>
             <SubLayoutTit>
                 <p><i>OUR </i>CORE</p>
                 <p><span>S</span>OLUTI<span>O</span>NS</p>
@@ -216,9 +244,18 @@ export default function GridLayout() {
                 <Item className="item">
                     <h3>branding</h3>
                     <ul>
-                        <li>브랜드 개발 (네이밍, 포지셔닝, 비전&미션 구축)</li>
-                        <li>기업 및 제품 브랜드 로고 디자인(BI&CI)</li>
-                        <li>브랜드 비주얼 가이드라인 개발</li>
+                        {
+                            (t('about.branding',{returnObjects : true}) as Array<any>).map((e,index)=>{
+                                return (
+                                    <li key={index}>
+                                        {
+                                            i18n.language === "en" && index === 0 ? 
+                                            <>{e.text} <span>{e.span}</span></> : e
+                                        }
+                                    </li>
+                                )
+                            })
+                        }
                     </ul>
                 </Item>
                 <Item className="item">
@@ -226,9 +263,9 @@ export default function GridLayout() {
                         exhibition graphic
                     </h3>
                     <ul>
-                        <li>전시 키 비주얼</li>
-                        <li>그래픽 패널</li>
-                        <li>사인 디자인</li> 
+                        {
+                            (t('about.exhibition',{returnObjects : true}) as Array<any>).map((e,index)=><li key={index}>{e}</li>)
+                        }
                     </ul>
                 </Item>
             </Grid>
@@ -236,25 +273,25 @@ export default function GridLayout() {
                 <Item className="item">
                     <h3>graphic</h3>
                     <ul>
-                        <li>기업 및 제품 그래픽 디자인</li>
-                        <li>키 비주얼 디자인</li>
-                        <li>일러스트·삽화</li>
+                        {
+                            (t('about.graphic',{returnObjects : true}) as Array<any>).map((e,index)=><li key={index}>{e}</li>)
+                        }
                     </ul>
                 </Item>
                 <Item className="item">
                     <h3>editorial · package</h3>
                     <ul>
-                        <li>카탈로그·브로슈어 디자인</li>
-                        <li>포스터·리플릿 디자인</li>
-                        <li>제품 패키지 디자인</li>
-                        <li>인쇄 및 제작 공정 진행</li>
+                        {
+                            (t('about.editorial',{returnObjects : true}) as Array<any>).map((e,index)=><li key={index}>{e}</li>)
+                        }
                     </ul>
                 </Item>
                 <Item className="item">
                     <h3>gui · ux</h3>
                     <ul>
-                        <li>모바일·웹 인터페이스</li>
-                        <li>아이콘 및 픽토그램 디자인</li>
+                        {
+                            (t('about.gui',{returnObjects : true}) as Array<any>).map((e,index)=><li key={index}>{e}</li>)
+                        }
                     </ul>
                 </Item>
             </Grid>

@@ -106,7 +106,6 @@ export default function About() {
                 $page="about"
                 onMouseMove={(e)=>onMove(e)}
             >
-                
                 <Wrppaer>
                     <ImbLayout
                         cursorRef={curosrRef}

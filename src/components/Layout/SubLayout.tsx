@@ -84,6 +84,7 @@ export const Tit = styled.h2`
 
 `;
 
+
 export default function SubLayoutTit({children} : Props) {
 
     const titRef = useRef<HTMLHeadingElement>(null);

@@ -1,19 +1,17 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import translationKO from "../locales/ko/translation.json";
+import translationEN from "../locales/en/translation.json";
 
 i18n
     .use(initReactI18next)
     .init({
         resources : {
             en : {
-                translation : {
-                    "Test" : "test"
-                }
+                translation : translationEN
             },
             ko : {
-                translation : {
-                    "Test" : "테스트 입니다"
-                }
+                translation : translationKO
             }
         },
         lng : "ko", // 기본 설정

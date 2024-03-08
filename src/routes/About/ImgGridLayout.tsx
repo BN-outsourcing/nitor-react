@@ -2,7 +2,8 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
 import styled from "styled-components";
-import { getTrigger } from "../../utils/gsap";
+import { blurAnimtaion, getTrigger } from "../../utils/gsap";
+import { useTranslation } from "react-i18next";
 
 const ImgGrid = styled.div`
     display: flex;
@@ -114,10 +115,55 @@ const ImgGridItem = styled.div`
 
 `;
 
+const EngText = styled.div`
+    width: ${100 - (100/1920*100)}%;
+    margin: 0 auto;
+    font-size: ${42*100/1920}vw;
+    text-transform: uppercase;
+    margin-top: ${70/42}em;
+    div {
+        box-sizing: border-box;
+        padding-right: ${540*100/1920}vw;
+        text-align: right;
+        white-space: nowrap;
+        font-family: 'Neue Haas Grotesk Display Pro';
+        font-weight: 500;
+        line-height: ${56/42};
+        p {
+            text-align: left;
+        }
+    }
+    
+    @media screen and (max-width : 820px) {
+        font-size: calc(26*100/820*1vw);
+        div {
+            padding-right: 0;
+            white-space: normal;
+            word-break: keep-all;
+        }
+    }
+
+    @media screen and (max-width : 480px) {
+        font-size: 18px;
+        div {
+            padding-right: 0;
+            white-space: normal;
+            word-break: keep-all;
+        }
+    }
+
+`;
+
 export default function ImgGridLayout() {
 
-    const gridRef = useRef<HTMLDivElement>(null);
+    const {i18n} = useTranslation();
+    const engTextRef = useRef<HTMLDivElement>(null);
+    useGSAP(()=>{
+        if(!engTextRef.current) return;
+        blurAnimtaion(engTextRef.current);
+    },[engTextRef.current]);
 
+    const gridRef = useRef<HTMLDivElement>(null);
     useGSAP(()=>{
 
         if(gridRef.current){
@@ -147,27 +193,46 @@ export default function ImgGridLayout() {
     
     return (
 
-        <ImgGrid ref={gridRef}>
-            <ImgGridItem>
-                <div className="imgs">
-                    <img src="/image/about/grid-img01.png" alt=""/>
-                    <div className="back"></div>
-                </div>
-            </ImgGridItem>
-            <ImgGridItem>
-                <div className="right">
+        <>
+            <ImgGrid ref={gridRef}>
+                <ImgGridItem>
                     <div className="imgs">
-                        <div className="img" style={{backgroundImage : 'url(/image/about/grid-img02.png)'}}/>
+                        <img src="/image/about/grid-img01.png" alt=""/>
                         <div className="back"></div>
                     </div>
-                    <p>
-                        NITOR의 VI는 전진하는 빛이 매질을 만나 분산되는 순간이 담겨있습니다.<br/>
-                        각자 다른 속도와 각도로 분산되는 빛의 형태는 NITOR가 제공하는<br/>
-                        크리에이티브 솔루션의 무한한 가능성을 상징합니다.
-                    </p>
-                </div>
-            </ImgGridItem>
-        </ImgGrid>
+                </ImgGridItem>
+                <ImgGridItem>
+                    <div className="right">
+                        <div className="imgs">
+                            <div className="img" style={{backgroundImage : 'url(/image/about/grid-img02.png)'}}/>
+                            <div className="back"></div>
+                        </div>
+                        {
+                            i18n.language === "ko"?
+                            <p>
+                                NITOR의 VI는 전진하는 빛이 매질을 만나 분산되는 순간이 담겨있습니다.<br/>
+                                각자 다른 속도와 각도로 분산되는 빛의 형태는 NITOR가 제공하는<br/>
+                                크리에이티브 솔루션의 무한한 가능성을 상징합니다.
+                            </p>
+                            : null
+                        }
+                    </div>
+                </ImgGridItem>
+            </ImgGrid>
+            {
+                i18n.language !== "ko" ?
+                <EngText ref={engTextRef}>
+                    <div>
+                        <p>The shape of NITOR's CI captures the moment</p>
+                        when advancing light meets the medium and is dispersed. <br/>
+                        The forms of light distributed at various speeds and<br/>
+                        angles represent the infinite possibilities of creative<br/>
+                        solutions provided by NITOR.
+                    </div>
+                </EngText>
+                : null
+            }
+        </>
 
     )
 

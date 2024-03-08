@@ -5,13 +5,11 @@ import styled from "styled-components"
 import { getTrigger } from "../../utils/gsap";
 import SubLayoutTit from "../../components/Layout/SubLayout";
 import Cricle, { CircleProps } from "../../components/About/Circle";
+import { useTranslation } from "react-i18next";
 
 const Imb = styled.div`
     position: relative;
 `;
-
-
-
 
 const Search = styled.div`
 
@@ -137,7 +135,7 @@ const Tbx = styled.div`
 
     .inline {
 
-        font-size: calc(52*100/1920*1vw);
+        font-size: calc(42*100/1920*1vw);
         font-family: 'Neue Haas Grotesk Display Pro';
         text-transform: uppercase;
         font-weight: 500;
@@ -185,6 +183,7 @@ const Tbx = styled.div`
     @media screen and (max-width: 480px) {
         
         .inline {
+            font-size: 18px;
             .desc {
                 font-size: 14px;
             }
@@ -194,8 +193,9 @@ const Tbx = styled.div`
 
 `;
 
-
 export default function ImbLayout({cursorRef} : CircleProps) {
+
+    const {i18n} = useTranslation();
 
     const searchRef = useRef<HTMLDivElement>(null);
     useGSAP(()=>{
@@ -315,11 +315,19 @@ export default function ImbLayout({cursorRef} : CircleProps) {
                 </div>
                 <dl>
                     <dt>Brightness, splendor</dt>
-                    <dd>빛, 광채, 광휘</dd>
+                    {
+                        i18n.language === "ko" ?
+                        <dd>빛, 광채, 광휘</dd>
+                        : null
+                    }
                 </dl>
                 <dl>
                     <dt>Foward, advanced</dt>
-                    <dd>나아가다, 도달하다</dd>
+                    {
+                        i18n.language === "ko" ?
+                        <dd>나아가다, 도달하다</dd>
+                        : null
+                    }
                 </dl>
             </Search>
 

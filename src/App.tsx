@@ -1,4 +1,4 @@
-import {RouterProvider, createBrowserRouter} from "react-router-dom";
+import {RouterProvider, createBrowserRouter } from "react-router-dom";
 import Main from "./routes/Main";
 import Layout from "./components/Layout";
 import { createGlobalStyle } from "styled-components";
@@ -51,7 +51,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     background-color: black;
   }
-`;;
+`;
 
 function App() {
 

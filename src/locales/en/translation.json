@@ -1,0 +1,32 @@
+{
+    "about" : {
+        "branding" : [
+            {
+                "text" : "Branding",
+                "span" : "(Brand naming, positioning, vision & mission building)"
+            },
+            "Brand logo design (BI&CI)",
+            "Brand visual guidelines"
+        ],
+        "exhibition" : [
+            "Exhibition key visual design",
+            "Panel design",
+            "Signage design"
+        ],
+        "graphic" : [
+            "Corporate · Product identity design",
+            "Key visual design",
+            "Illustration · Hand drawing"
+        ],
+        "editorial" : [
+            "Catalogue · Brochure design",
+            "Poster · Leaflet design",
+            "Package design",
+            "Print and press"
+        ],
+        "gui" : [
+            "Mobile · Web interface design",
+            "Icon · Pictogram Design"
+        ]
+    }
+}

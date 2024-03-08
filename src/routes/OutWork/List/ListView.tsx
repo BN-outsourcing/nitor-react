@@ -274,104 +274,38 @@ export default function ListView({item,glass} : Props) {
             
             {
                 item.map((el)=>
-                    <>
-                        <Items
-                            className="item"
-                            key={el.id}
-                            onClick={()=>itemOnClick(el.id)} 
-                            style={{backgroundImage : `url(${el.image[0]})`}}
-                            onMouseOver={onOver}
-                            onMouseLeave={onLeave}
-                        >
-                            <p>{el.smallText}</p>
-                            <dl>
-                                <dt>
-                                    {
-                                        el.tag.map((el,index)=>
-                                            {
-                                                if(typeof el === "object"){
+                    <Items
+                        className="item"
+                        key={el.id}
+                        onClick={()=>itemOnClick(el.id)} 
+                        style={{backgroundImage : `url(${el.image[0]})`}}
+                        onMouseOver={onOver}
+                        onMouseLeave={onLeave}
+                    >
+                        <p>{el.smallText}</p>
+                        <dl>
+                            <dt>
+                                {
+                                    el.tag.map((el,index)=>
+                                        {
+                                            if(typeof el === "object"){
 
-                                                    return (
-                                                        <ColorP 
-                                                            key={index} 
-                                                            className={el.color}
-                                                            style={{transitionDelay : `${0.2*index}s`}}
-                                                        >{el.name}</ColorP>
-                                                    )
-                                                    
-                                                }
+                                                return (
+                                                    <ColorP 
+                                                        key={index} 
+                                                        className={el.color}
+                                                        style={{transitionDelay : `${0.2*index}s`}}
+                                                    >{el.name}</ColorP>
+                                                )
+                                                
                                             }
-                                        )
-                                    }
-                                </dt>
-                                <dd dangerouslySetInnerHTML={{__html : el[i18n.language].title}} />
-                            </dl>
-                        </Items>
-                        <Items
-                            className="item"
-                            key={el.id}
-                            onClick={()=>itemOnClick(el.id)} 
-                            style={{backgroundImage : `url(${el.image[0]})`}}
-                            onMouseOver={onOver}
-                            onMouseLeave={onLeave}
-                        >
-                            <p>{el.smallText}</p>
-                            <dl>
-                                <dt>
-                                    {
-                                        el.tag.map((el,index)=>
-                                            {
-                                                if(typeof el === "object"){
-
-                                                    return (
-                                                        <ColorP 
-                                                            key={index} 
-                                                            className={el.color}
-                                                            style={{transitionDelay : `${0.2*index}s`}}
-                                                        >{el.name}</ColorP>
-                                                    )
-                                                    
-                                                }
-                                            }
-                                        )
-                                    }
-                                </dt>
-                                <dd dangerouslySetInnerHTML={{__html : el[i18n.language].title}} />
-                            </dl>
-                        </Items>
-                        <Items
-                            className="item"
-                            key={el.id}
-                            onClick={()=>itemOnClick(el.id)} 
-                            style={{backgroundImage : `url(${el.image[0]})`}}
-                            onMouseOver={onOver}
-                            onMouseLeave={onLeave}
-                        >
-                            <p>{el.smallText}</p>
-                            <dl>
-                                <dt>
-                                    {
-                                        el.tag.map((el,index)=>
-                                            {
-                                                if(typeof el === "object"){
-
-                                                    return (
-                                                        <ColorP 
-                                                            key={index} 
-                                                            className={el.color}
-                                                            style={{transitionDelay : `${0.2*index}s`}}
-                                                        >{el.name}</ColorP>
-                                                    )
-                                                    
-                                                }
-                                            }
-                                        )
-                                    }
-                                </dt>
-                                <dd dangerouslySetInnerHTML={{__html : el[i18n.language].title}} />
-                            </dl>
-                        </Items>
-                    </>
+                                        }
+                                    )
+                                }
+                            </dt>
+                            <dd dangerouslySetInnerHTML={{__html : el[i18n.language].title}} />
+                        </dl>
+                    </Items>
                 )
             }
 
