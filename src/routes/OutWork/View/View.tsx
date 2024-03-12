@@ -12,7 +12,7 @@ import { useQuery } from "react-query";
 import { itemInfoFetch } from "../../../utils/APIfetch";
 import { SubLayout } from "../../../components/Layout/SubLayout";
 
-const ViewLayout = styled.div`
+/* const ViewLayout = styled.div`
     padding: 225px 0 150px;
     color: #fff;
 
@@ -20,9 +20,7 @@ const ViewLayout = styled.div`
         padding: 150px 0 125px;
     }
 
-`;
-
-
+`; */
 
 const Wrapper = styled.div`
     max-width: 1600px;
