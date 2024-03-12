@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { useSetRecoilState } from "recoil";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { footerAtom } from "../Atom/footer";
 import { useGSAP } from "@gsap/react";
@@ -16,6 +16,7 @@ const Wrapper = styled.div`
     background-position: center;
     background-size: cover;
     transition: background .4s;
+    cursor: pointer;
 `;
 
 const Tbx = styled.dl`
@@ -109,7 +110,7 @@ export default function Main() {
     },[]);
 
     // 배경화면 클릭
-    const onClick = ()=>{
+    const onClick = useCallback(()=>{
 
         if(bgIndex >= background.length - 1){
             setBgIndex(0);
@@ -117,7 +118,7 @@ export default function Main() {
             setBgIndex(bgIndex + 1);
         }
 
-    }
+    },[background,bgIndex]);
 
     const tbxRef = useRef<HTMLDListElement>(null);
     useGSAP(()=>{

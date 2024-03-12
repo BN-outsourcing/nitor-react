@@ -14,7 +14,8 @@ const Footer = styled.footer<PageProps>`
     text-transform: uppercase;
     font-family: 'Neue Haas Grotesk Display Pro';
     font-weight: 500;
-    padding: 40px 0;
+    /* padding: 40px 0; */
+    padding: 25px 0;
 
     ${props=>{
         if(props.$page === "main"){
@@ -28,8 +29,13 @@ const Footer = styled.footer<PageProps>`
 
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<PageProps>`
     width: ${100 - (100/1920*100)}%;
+    max-width: ${props=>{
+        if(props.$page !== "main"){
+            return "1600px";
+        }
+    }};
     margin: 0 auto;
     display: flex;
     align-items: flex-end;
@@ -89,9 +95,10 @@ export const AddressDl = styled.dl`
 
 const Copy = styled.div`
     text-align: right;
-    font-size: 16px;
+    font-size: 13px;
     white-space: nowrap;
     margin-left: auto;
+    color : #b3b3b3;
     > p {
         margin-top: 30px;
     }
@@ -153,7 +160,7 @@ export default function FooterLayout() {
     return (
         <Footer $page={footerState}>
 
-            <Wrapper>
+            <Wrapper $page={footerState}>
 
                 {
                     pathname !== "/" ?

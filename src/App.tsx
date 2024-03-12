@@ -49,7 +49,7 @@ const GlobalStyle = createGlobalStyle`
     height: auto;
   }
   body {
-    background-color: black;
+    background: #101010;
   }
 `;
 

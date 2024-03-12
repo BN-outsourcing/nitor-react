@@ -16,7 +16,7 @@ export default function Layout() {
     return (
         <> 
             <HeaderLayout/>
-            <ClickMenu/>
+                <ClickMenu/>
                 <Outlet/>
             <FooterLayout/>
         </>

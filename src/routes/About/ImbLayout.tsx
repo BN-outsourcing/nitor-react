@@ -13,7 +13,7 @@ const Imb = styled.div`
 
 const Search = styled.div`
 
-    margin-top: 180px;
+    margin-top: 80px;
     max-width: 400px;
 
     .seb {
@@ -71,7 +71,7 @@ const Search = styled.div`
 
     @media screen and (max-width : 1280px) {
         
-        margin-top: 100px;
+        margin-top: 60px;
         width: 60%;
 
         .seb,
@@ -256,6 +256,7 @@ export default function ImbLayout({cursorRef} : CircleProps) {
     },[searchRef.current]);
 
     const tbxRef = useRef<HTMLDivElement>(null);
+    
     useGSAP(()=>{
 
         if(tbxRef.current){
@@ -264,7 +265,8 @@ export default function ImbLayout({cursorRef} : CircleProps) {
 
             const fadeTl = gsap.timeline({
                 scrollTrigger : getTrigger(target)
-            })
+            });
+
             fadeTl.fromTo(target.querySelector('.right'),{
                 filter : "blur(10px)"
             },{
@@ -278,7 +280,6 @@ export default function ImbLayout({cursorRef} : CircleProps) {
                     filter : "blur(0px)"
                 },">-=50%")
             })
-
 
             gsap.fromTo(target.querySelector('.desc'),{
                 filter : "blur(10px)"
@@ -310,7 +311,13 @@ export default function ImbLayout({cursorRef} : CircleProps) {
                     <i className="xi-search"/>
                 </div>
                 <div className="sound">
-                    <span>[ni <img src="/image/about/icon.png" alt=""/> tor, 니토르]</span>
+                    {
+                        i18n.language === "ko"
+                        ?
+                        <span>[ni <img src="/image/about/icon.png" alt=""/> tor, 니토르]</span>
+                        :
+                        <span>[ni <img src="/image/about/icon.png" alt=""/> tor]</span>
+                    }
                     <i className="xi-volume-up"/>
                 </div>
                 <dl>
@@ -336,10 +343,14 @@ export default function ImbLayout({cursorRef} : CircleProps) {
                     <p className="right">In all areas where</p>
                     <div>visual communication is needed in our daily lives,</div>
                     <div>NITOR wants to spread that <i>light</i> constantly.</div>
-                    <p className="desc">
-                        우리의 일상 속 비주얼 커뮤니케이션이 필요한 모든 분야에<br/>
-                        NITOR는 그 빛을 끊임없이 확산시키고자 합니다.
-                    </p>
+                    {
+                        i18n.language === "ko" ?
+                        <p className="desc">
+                            우리의 일상 속 비주얼 커뮤니케이션이 필요한 모든 분야에<br/>
+                            NITOR는 그 빛을 끊임없이 확산시키고자 합니다.
+                        </p>
+                        : null
+                    }
                 </div>
             </Tbx>
 

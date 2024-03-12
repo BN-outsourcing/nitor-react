@@ -5,19 +5,29 @@ import styled from "styled-components";
 import { blurAnimtaion, getTrigger } from "../../utils/gsap";
 import { useTranslation } from "react-i18next";
 
-const ImgGrid = styled.div`
+type ImgGridProps = {
+    $language? : string
+}
+const ImgGrid = styled.div<ImgGridProps>`
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: ${100 - (100/1920*100)}%;
+    max-width: 1600px;
     margin: 0 auto;
     gap: 100px;
-    margin-top: 100px;
-    padding-right: calc(110*100/1920*1vw);
+    margin-top: ${props=>{
+        if(props.$language === "ko") {
+            return 100
+        }else{
+            return 50
+        }
+    }}px;
+    /* padding-right: calc(110*100/1920*1vw); */
     box-sizing: border-box;
 
     @media screen and (max-width : 1280px) {
-        padding-right: 2.5%;
+        /* padding-right: 2.5%; */
     }
 
     @media screen and (max-width : 1024px) {
@@ -168,7 +178,7 @@ export default function ImgGridLayout() {
 
         if(gridRef.current){
 
-            gridRef.current.querySelectorAll('.imgs').forEach(el=>{
+            /* gridRef.current.querySelectorAll('.imgs').forEach(el=>{
 
                 gsap.fromTo(el.querySelector('.back'),{
                     scaleX : 1
@@ -177,7 +187,7 @@ export default function ImgGridLayout() {
                     scrollTrigger : getTrigger(el)
                 });
 
-            });
+            }); */
 
             gsap.fromTo(gridRef.current.querySelector('.right p'),{
                 filter : "blur(10px)"
@@ -198,14 +208,14 @@ export default function ImgGridLayout() {
                 <ImgGridItem>
                     <div className="imgs">
                         <img src="/image/about/grid-img01.png" alt=""/>
-                        <div className="back"></div>
+                        {/* <div className="back"></div> */}
                     </div>
                 </ImgGridItem>
                 <ImgGridItem>
                     <div className="right">
                         <div className="imgs">
                             <div className="img" style={{backgroundImage : 'url(/image/about/grid-img02.png)'}}/>
-                            <div className="back"></div>
+                            {/* <div className="back"></div> */}
                         </div>
                         {
                             i18n.language === "ko"?
@@ -219,19 +229,15 @@ export default function ImgGridLayout() {
                     </div>
                 </ImgGridItem>
             </ImgGrid>
-            {
-                i18n.language !== "ko" ?
-                <EngText ref={engTextRef}>
-                    <div>
-                        <p>The shape of NITOR's CI captures the moment</p>
-                        when advancing light meets the medium and is dispersed. <br/>
-                        The forms of light distributed at various speeds and<br/>
-                        angles represent the infinite possibilities of creative<br/>
-                        solutions provided by NITOR.
-                    </div>
-                </EngText>
-                : null
-            }
+            <EngText ref={engTextRef}>
+                <div>
+                    <p>The shape of NITOR's CI captures the moment</p>
+                    when advancing light meets the medium and is dispersed. <br/>
+                    The forms of light distributed at various speeds and<br/>
+                    angles represent the infinite possibilities of creative<br/>
+                    solutions provided by NITOR.
+                </div>
+            </EngText>
         </>
 
     )

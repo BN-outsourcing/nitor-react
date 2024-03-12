@@ -1,48 +1,23 @@
 import styled from "styled-components"
-import { useEffect, useRef, useState } from "react";
-import axios from "axios";
+import { useCallback, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import ListView from "./ListView";
 import SubLayoutTit, { SubLayout } from "../../../components/Layout/SubLayout";
 import { useQuery } from "react-query";
-import { Item, TagType } from "../../../types/axiosType";
+import { Item } from "../../../types/axiosType";
 import { useRecoilValue } from "recoil";
 import { listTagClickAtom } from "../../../Atom/tag";
 import Tag from "../../../components/List/Tag";
 import {CursorType1} from "../../../components/Cursor";
+import { itemFetch } from "../../../utils/APIfetch";
 
 const Wrapper = styled.div`
     max-width: 1820px;
-    width: 95%;
+    width: 94.79166666666667%;
     margin: 0 auto;
+    max-width: 1600px;
 `;
 
-// item 가져오기
-const itemFetch = async ()=>{
-    const response = await axios.get('/api.json');
-
-    const {data} = response;
-
-    const {product,tag} : {product : Item[], tag : TagType[]} = data;
-
-    // product 와 tag를 비교해서 product의 tag를 수정해줍니다
-    for (const item of product){
-        const productTags = item.tag; 
-        const matchedTags : TagType[] = [];
-    
-        productTags.forEach(productTag => {
-            const matchedTag = tag.find(tag => tag.type === productTag);
-            if (matchedTag) {
-            matchedTags.push(matchedTag);
-            }
-        });
-    
-        item.tag = matchedTags;
-    }
-
-    return product;
-
-}
 
 export default function List() {
 
@@ -73,7 +48,7 @@ export default function List() {
 
     // 돋보기 애니메이션
     const glassRef = useRef<HTMLDivElement>(null);
-    const onMove = (e : React.MouseEvent<HTMLElement>)=>{
+    const onMove = useCallback((e : React.MouseEvent<HTMLElement>)=>{
         const cosX = e.clientX;
         const cosY = e.clientY;
 
@@ -85,7 +60,7 @@ export default function List() {
             });
         }
 
-    }
+    },[glassRef.current]);
 
     return (
         <>

@@ -1,7 +1,7 @@
 import { useGSAP } from "@gsap/react";
 import axios from "axios";
 import gsap from "gsap";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useQuery } from "react-query";
 import styled from "styled-components";
 
@@ -12,9 +12,10 @@ export type CircleProps = {
 const CricleLayout = styled.div`
 
     position: absolute;
-    right: calc(130/1600*100%);
+    /* right: calc(130/1600*100%); */
+    right: 0;
     top: calc(60/1460*100%);
-    width: calc(620*100/1920*1vw);
+    width: calc(580*100/1920*1vw);
     border-radius: 1000px;
     overflow: hidden;
 
@@ -49,6 +50,8 @@ const imageLengthFetch = async () => {
 export default function Cricle({cursorRef} : CircleProps) {
 
     const {data : max} = useQuery('imageLength',imageLengthFetch);
+    const [number,setNumber] = useState(0);
+    const [over,setOver] = useState(false);
 
     const imgRef = useRef<HTMLDivElement>(null);
     useGSAP(()=>{
@@ -72,36 +75,45 @@ export default function Cricle({cursorRef} : CircleProps) {
 
     },[imgRef.current]);
 
-    const imgOver = ()=>{
+    const imgOver = useCallback(()=>{
+        setOver(true);
         gsap.to(cursorRef.current,{
             scale : 1,
             duration : 0.4,
         })
-    }
-    const imgLeave = ()=>{
+    },[cursorRef.current]);
+
+    const imgLeave = useCallback(()=>{
+        setOver(false);
         gsap.to(cursorRef.current,{
             scale : 0,
             duration : 0.4,
         })
-    }
-
-    const [number,setNumber] = useState(0);
+    },[cursorRef.current]);
 
     useEffect(()=>{
-        if(max){
-            const timer = setInterval(()=>{
-                if(number >= max-1){
-                    return setNumber(0);
-                }
-                setNumber(number+1);
-            },500);
 
-            return ()=>{
+        const TIMER = 150;
+
+        if(max){
+            let timer : any;
+
+            if(over){
                 clearInterval(timer);
+            }else{
+                timer = setInterval(()=>{
+                    if(number >= max-1){
+                        return setNumber(0);
+                    }
+                    setNumber(number+1);
+                },TIMER);
             }
 
+            return ()=>{
+                if(timer) clearInterval(timer);
+            }
         }
-    },[max,number]);
+    },[max,number,over]);
 
     return (
         <CricleLayout 

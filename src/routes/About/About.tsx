@@ -2,7 +2,7 @@ import styled from "styled-components"
 import ImbLayout from "./ImbLayout";
 import ImgGridLayout from "./ImgGridLayout";
 import GridLayout from "./GridLayout";
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import TextPlugin from "gsap/TextPlugin";
@@ -64,7 +64,7 @@ export default function About() {
     },[subRef.current]);
 
     const curosrRef = useRef<HTMLDivElement>(null);
-    const onMove = (e : React.MouseEvent<HTMLElement>)=>{
+    const onMove = useCallback((e : React.MouseEvent<HTMLElement>)=>{
         const cosX = e.clientX;
         const cosY = e.clientY;
 
@@ -77,18 +77,19 @@ export default function About() {
 
         }
 
-    }
+    },[curosrRef.current]);
 
     useGSAP(()=>{
         
         if(!scrollRef.current) return;
 
         gsap.fromTo(scrollRef.current.querySelector('i'),{
-            y : 10
+            y : 15
         },{
             y : 0,
             yoyo : true,
             ease : "power1.inOut",
+            duration : 1,
             repeat : -1
         })
 
@@ -97,8 +98,7 @@ export default function About() {
     return (
         <>
             <ScrollDown ref={scrollRef} className={sdOpacity ? "act" : ""}>
-                SCROLLDOWN
-                <i  className="xi-arrow-down"></i>
+                <i className="xi-angle-down"></i>
             </ScrollDown>
 
             <SubLayout

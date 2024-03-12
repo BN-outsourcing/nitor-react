@@ -1,11 +1,13 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components"
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { headerAtom } from "../../Atom/header";
 import { useEffect, useRef, useState } from "react";
 import i18n from "../../locales/i18n";
+import { PageProps } from "../../types/styled";
+import { footerAtom } from "../../Atom/footer";
 
-const Header = styled.header`
+const Header = styled.header<PageProps>`
 
     position: fixed;
     top: 0;
@@ -17,6 +19,7 @@ const Header = styled.header`
 
     .wrapper {
         width: ${100 - (100/1920*100)}%;
+        max-width: ${props=>props.$page !== "main" ? "1600px" : ""};
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
@@ -28,6 +31,7 @@ const Header = styled.header`
     }
 
     .logo {
+        width: 117.6px;
         &.hide {
             visibility: hidden;
         }
@@ -138,6 +142,7 @@ export default function HeaderLayout() {
     const navigate = useNavigate();
 
     const [headerState,setHeader] = useRecoilState(headerAtom);
+    const footerState = useRecoilValue(footerAtom);
     const [scrollDown,setScrollDown] = useState(false);
     const headerRef = useRef<HTMLElement>(null);
 
@@ -150,6 +155,7 @@ export default function HeaderLayout() {
             i18n.changeLanguage(language);
             setLangMenu(language);
             document.documentElement.lang = language;
+            window.scrollTo(0,0);
         }
     }
 
@@ -197,6 +203,7 @@ export default function HeaderLayout() {
                 ref={headerRef} 
                 className={scrollDown ? "hide" : ""}
                 onMouseOver={headerOver}
+                $page={footerState}
             >
                 <div className="wrapper">
 

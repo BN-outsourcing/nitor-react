@@ -7,7 +7,6 @@ import { blurAnimtaion } from "../../utils/gsap";
 
 // 서브페이지 레이아웃
 export const SubLayout = styled.div<PageProps>`
-    background-color: #000000;
     color: #fff;
     padding: 140px 0 150px;
     position: relative;
@@ -35,7 +34,7 @@ export const SubLayout = styled.div<PageProps>`
 `;
 
 export const Tit = styled.h2`
-    font-size: 120px;
+    font-size: 88px;
     line-height: calc(125/120);
     font-family: 'Neue Haas Grotesk Display Pro';
     font-weight: 500;
@@ -43,6 +42,7 @@ export const Tit = styled.h2`
     position: relative;
     z-index: 2;
     pointer-events: none;
+    color: #fff;
 
     span {
         font-family: 'Big Daily Short';
@@ -54,19 +54,19 @@ export const Tit = styled.h2`
 
     @media screen and (max-width : 1480px) {
         
-        font-size: 100px;
+        font-size: 78px;
 
     }
 
     @media screen and (max-width : 1280px) {
         
-        font-size: 90px;
+        font-size: 68px;
 
     }
 
     @media screen and (max-width : 1024px) {
         
-        font-size: 70px;
+        font-size: 58px;
 
     }
 

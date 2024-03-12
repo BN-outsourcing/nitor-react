@@ -1,6 +1,6 @@
 import { useGSAP } from "@gsap/react";
-import { useRef } from "react";
-import { blurAnimtaion, getTrigger } from "../../../utils/gsap";
+import { useCallback, useRef } from "react";
+import { blurAnimtaion } from "../../../utils/gsap";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { ColorP } from "../../../components/p";
@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 import { Item } from "../../../types/axiosType";
 
 const Grid = styled.div`
-    margin-top: 115px;
+    margin-top: 55px;
     margin-right: auto;
     display: grid;
     grid-template-columns: repeat(3,1fr);
@@ -24,7 +24,7 @@ const Grid = styled.div`
     }
 
     @media screen and (max-width : 820px) {
-        margin-top: 80px;
+        /* margin-top: 80px; */
         gap: 80px 35px;
         grid-template-columns: repeat(1,1fr);
     }
@@ -34,7 +34,7 @@ const Grid = styled.div`
 const Items = styled.div`
 
     position: relative;
-    border-radius: 20px;
+    /* border-radius: 20px; */
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -46,7 +46,7 @@ const Items = styled.div`
         top: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0,0,0,0.5);
+        background-color: #000;
         content: "";
         opacity: 0;
         transition: opacity .4s;
@@ -55,7 +55,7 @@ const Items = styled.div`
     &::after {
         content: '';
         display: block;
-        padding-bottom: calc(680/560*100%);
+        padding-bottom: 110%;
     }
 
     > p {
@@ -72,9 +72,10 @@ const Items = styled.div`
 
     dl {
         position: absolute;
-        top:50%;
+        top: 10%;
+        /* top:50%; */
         left: calc(30/505*100%);
-        transform: translateY(-50%);
+        /* transform: translateY(-50%); */
         overflow: hidden;
 
         dt {
@@ -99,7 +100,7 @@ const Items = styled.div`
         
         &:hover {
             &::before {
-                opacity: 0.6;
+                opacity: 0.8;
             }
 
             dl {
@@ -233,7 +234,7 @@ export default function ListView({item,glass} : Props) {
     }
 
     // 돋보기
-    const onOver = ()=>{
+    const onOver = useCallback(()=>{
         if(glass.current){
             const target = glass.current as HTMLElement;
             gsap.to(target,{
@@ -242,8 +243,8 @@ export default function ListView({item,glass} : Props) {
                 duration : 0.4,
             });
         }
-    }
-    const onLeave = ()=>{
+    },[glass.current]);
+    const onLeave = useCallback(()=>{
         if(glass.current){
             const target = glass.current as HTMLElement;
             gsap.to(target,{
@@ -252,7 +253,7 @@ export default function ListView({item,glass} : Props) {
                 duration : 0.4,
             });
         }
-    }
+    },[glass.current]);
 
     // 아이템 애니메이션
     const gridRef = useRef(null);
@@ -282,7 +283,6 @@ export default function ListView({item,glass} : Props) {
                         onMouseOver={onOver}
                         onMouseLeave={onLeave}
                     >
-                        <p>{el.smallText}</p>
                         <dl>
                             <dt>
                                 {

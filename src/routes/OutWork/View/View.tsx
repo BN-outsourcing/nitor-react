@@ -2,14 +2,15 @@ import styled, { css } from "styled-components"
 import { ColorP } from "../../../components/p";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Link, useParams } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
-import axios from "axios";
+import { useRef, useState } from "react";
 import { Navigation } from "swiper/modules";
 import gsap from "gsap";
 import { blurAnimtaion, getTrigger } from "../../../utils/gsap";
 import { useGSAP } from "@gsap/react";
-import { Item } from "../../../types/axiosType";
 import { useTranslation } from "react-i18next";
+import { useQuery } from "react-query";
+import { itemInfoFetch } from "../../../utils/APIfetch";
+import { SubLayout } from "../../../components/Layout/SubLayout";
 
 const ViewLayout = styled.div`
     padding: 225px 0 150px;
@@ -20,6 +21,8 @@ const ViewLayout = styled.div`
     }
 
 `;
+
+
 
 const Wrapper = styled.div`
     max-width: 1600px;
@@ -160,7 +163,7 @@ const SlideBox = styled.div`
             top: 0;
             width: 100%;
             height: 100%;
-            background: rgba(000,000,000,0.3);
+            background: rgba(000,000,000,0.8);
             opacity: 1;
             transition: opacity .4s;
         }
@@ -171,75 +174,6 @@ const SlideBox = styled.div`
             }
         }
 
-    }
-
-`;
-
-const Page = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 40px;
-    p {
-        font-size: 32px;
-        font-family: 'Neue Haas Grotesk Display Pro';
-        font-weight: 500;
-        color: #fff;
-        opacity: 0.3;
-        &.act {
-            opacity: 1;
-        }
-    }
-    div {
-        width: 20px;
-        height: 2px;
-        background: #fff;
-        opacity: 0.3;
-        margin: 0 20px;
-    }
-
-    @media screen and (max-width : 1024px) {
-        p {
-            font-size: 24px;
-        }
-        div {
-            width: 15px;
-            margin: 0 10px;
-        }
-    }
-
-`;
-
-const Back = styled.div`
-    font-family: 'Neue Haas Grotesk Display Pro';
-    font-weight: 500;
-    font-size: 18px;
-    margin: 45px auto 0;
-    text-align: center;
-    a {
-        width: calc(210/20*1em);
-        height: calc(50/20*1em);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 10px;
-        color: #fff;
-        border: 1px solid #fff;
-        background-color: #000;
-        transition: .4s;
-        transition-property: background-color,color;
-        &:hover {
-            background-color: #fff;
-            color: #000;
-        }
-    }
-
-    @media screen and (max-width: 1024px) {
-        font-size: 16px;
-    }
-
-    @media screen and (max-width: 820px) {
-        font-size: 14px;
     }
 
 `;
@@ -324,7 +258,6 @@ const Button = styled.button<ButtonType>`
     }
 
 `;
-
 const Drag = styled.div`
     position: fixed;
     top: 0;
@@ -362,10 +295,87 @@ const Drag = styled.div`
     }
 `;
 
+const Flex = styled.div`
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+`;
+
+const Page = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-top: 40px; */
+    p {
+        font-size: 32px;
+        font-family: 'Neue Haas Grotesk Display Pro';
+        font-weight: 500;
+        color: #fff;
+        opacity: 0.3;
+        &.act {
+            opacity: 1;
+        }
+    }
+    div {
+        width: 20px;
+        height: 2px;
+        background: #fff;
+        opacity: 0.3;
+        margin: 0 20px;
+    }
+
+    @media screen and (max-width : 1024px) {
+        p {
+            font-size: 24px;
+        }
+        div {
+            width: 15px;
+            margin: 0 10px;
+        }
+    }
+
+`;
+
+const Back = styled.div`
+    font-family: 'Neue Haas Grotesk Display Pro';
+    font-weight: 500;
+    font-size: 18px;
+    /* margin: 45px auto 0; */
+    text-align: center;
+    margin-left: 20px;
+    a {
+        width: calc(210/20*1em);
+        height: calc(50/20*1em);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 15px;
+        color: #fff;
+        border: 1px solid #fff;
+        background-color: #000;
+        transition: .4s;
+        transition-property: background-color,color;
+        &:hover {
+            background-color: #fff;
+            color: #000;
+        }
+    }
+
+    @media screen and (max-width: 1024px) {
+        font-size: 16px;
+    }
+
+    @media screen and (max-width: 820px) {
+        font-size: 14px;
+    }
+
+`;
+
+
 export default function View() {
 
     const {id} = useParams();
-    const [data,setData] = useState<Item | null>(null);
+    // const [data,setData] = useState<Item | null>(null);
     const {i18n} = useTranslation();
 
     const [index,setIndex] = useState('00');
@@ -375,17 +385,7 @@ export default function View() {
     const prevRef = useRef(null);
     const dragRef = useRef(null);
 
-    useEffect(()=>{
-        axios.get('/api.json')
-        .then(({data})=>{
-            
-            const {product} = data;
-
-            const filter = product.filter((e : Item)=>e.id === Number(id));
-            setData(filter[0]);
-
-        })
-    },[]);
+    const {data} = useQuery("iteminfo",()=>itemInfoFetch(id));
 
     const slideMove = (e : React.MouseEvent<HTMLDivElement>)=>{
         if(dragRef.current){
@@ -449,7 +449,7 @@ export default function View() {
             
         }
 
-    },{dependencies : [titleRef.current], scope : titleRef});
+    },{dependencies : [titleRef.current,data], scope : titleRef});
 
     // 슬라이드 부분 애니메이션
     const slideRef = useRef(null);
@@ -463,7 +463,7 @@ export default function View() {
 
         }
 
-    },{dependencies : [slideRef.current], scope : slideRef});
+    },{dependencies : [slideRef.current,data], scope : slideRef});
 
     // 페이징
     const pageRef = useRef(null);
@@ -477,30 +477,17 @@ export default function View() {
 
         }
 
-    },{dependencies : [pageRef.current], scope : pageRef});
-
-    // back
-    const BackRef = useRef(null);
-    useGSAP(()=>{
-
-        if(BackRef.current){
-
-            const target = BackRef.current as HTMLElement;
-
-            blurAnimtaion(target);
-        }
-
-    },{dependencies : [BackRef.current], scope : BackRef});
+    },{dependencies : [pageRef.current,data], scope : pageRef});
 
     return (
         <>
-            <ViewLayout>
+            <SubLayout>
                 {
                     data ? 
                     <>
                         <Wrapper>
                             <TitleBox ref={titleRef}>
-                                <p className="e-tit">{data?.smallText}</p>
+                                <p className="e-tit">{data.smallText}</p>
                                 <dl className="tit">
                                     <dt dangerouslySetInnerHTML={{__html : data[i18n.language].title}}>
                                     </dt>
@@ -509,8 +496,13 @@ export default function View() {
                                     />
                                 </dl>
                                 <div className="tag">
-                                    <ColorP className="color01">branding</ColorP>
-                                    <ColorP className="color03">graphic</ColorP>
+                                    {
+                                        data.tag.map((el)=>{
+                                            if(typeof el === "object"){
+                                                return <ColorP key={el.type} className={el.color}>{el.name}</ColorP>
+                                            }
+                                        })
+                                    }
                                 </div>
                             </TitleBox>
                         </Wrapper>
@@ -588,20 +580,22 @@ export default function View() {
                             >Next <i className="xi-arrow-right"></i></Button>
                         </SlideBox>
 
-                        <Page ref={pageRef}>
-                            <p className="act">{index}</p>
-                                <div></div>
-                            <p>{last}</p>
-                        </Page>
+                        <Flex ref={pageRef}>
+                            <Page>
+                                <p className="act">{index}</p>
+                                    <div></div>
+                                <p>{last}</p>
+                            </Page>
 
-                        <Back ref={BackRef}>
-                            <Link to={'/outwork'}>BACK TO LIST</Link>
-                        </Back>
+                            <Back>
+                                <Link to={'/outwork'}>BACK TO LIST</Link>
+                            </Back>
+                        </Flex>
                     </>
                     :
                     null
                 }
-            </ViewLayout>
+            </SubLayout>
             <Drag ref={dragRef}>
                 <dl>
                     <dt>🖐️</dt>

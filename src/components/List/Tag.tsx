@@ -11,11 +11,11 @@ import { blurAnimtaion } from "../../utils/gsap";
 
 const TagLayout = styled.nav`
     display: inline-flex;
-    border: 1px solid rgba(255,255,255,0.5);
-    padding: 8px 14px;
+    /* border: 1px solid rgba(255,255,255,0.5); */
+    /* padding: 8px 14px; */
     box-sizing: border-box;
     border-radius: 12px;
-    margin-top: 50px;
+    margin-top: 10px;
     font-family: 'Neue Haas Grotesk Display Pro';
     font-weight: 500;
     text-transform: uppercase;
@@ -58,7 +58,7 @@ const TagLayout = styled.nav`
     }
     
     @media screen and (max-width : 820px) {
-        margin-top: 45px;
+        /* margin-top: 45px; */
         .a {
             font-size: 14px;
         }
