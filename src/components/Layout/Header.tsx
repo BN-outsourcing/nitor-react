@@ -1,13 +1,11 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components"
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { headerAtom } from "../../Atom/header";
 import { useEffect, useRef, useState } from "react";
 import i18n from "../../locales/i18n";
-import { PageProps } from "../../types/styled";
-import { footerAtom } from "../../Atom/footer";
 
-const Header = styled.header<PageProps>`
+const Header = styled.header`
 
     position: fixed;
     top: 0;
@@ -19,7 +17,7 @@ const Header = styled.header<PageProps>`
 
     .wrapper {
         width: ${100 - (100/1920*100)}%;
-        max-width: ${props=>props.$page !== "main" ? "1600px" : ""};
+        max-width: 1600px;
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
@@ -46,7 +44,7 @@ const Header = styled.header<PageProps>`
     @media screen and (max-width : 820px) {
         
         .logo {
-            width: 100px;
+            width: 75px;
         }
 
         .wrapper {
@@ -89,6 +87,13 @@ const LangBtn = styled.div`
             }
         }
     }
+
+    @media screen and (max-width:820px) {
+        button {
+            font-size: 14px;
+        }
+    }
+
 `;
 
 const MenuBtn = styled.div`
@@ -97,10 +102,10 @@ const MenuBtn = styled.div`
     // right: 50px;
     // top: 30px;
     position: relative;
-    width: 40px;
-    height: 20px;
+    width: 30px;
+    height: 15px;
     cursor: pointer;
-    margin-left: 30px;
+    margin-left: 20px;
 
     div {
         background: #fff;
@@ -142,7 +147,6 @@ export default function HeaderLayout() {
     const navigate = useNavigate();
 
     const [headerState,setHeader] = useRecoilState(headerAtom);
-    const footerState = useRecoilValue(footerAtom);
     const [scrollDown,setScrollDown] = useState(false);
     const headerRef = useRef<HTMLElement>(null);
 
@@ -169,7 +173,7 @@ export default function HeaderLayout() {
 
         const scrollHanlder = ()=>{
 
-            if(!headerRef){
+            if(headerRef){
 
                 const scrollTo = window.scrollY;
 
@@ -203,7 +207,6 @@ export default function HeaderLayout() {
                 ref={headerRef} 
                 className={scrollDown ? "hide" : ""}
                 onMouseOver={headerOver}
-                $page={footerState}
             >
                 <div className="wrapper">
 

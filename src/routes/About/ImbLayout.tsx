@@ -172,7 +172,11 @@ const Tbx = styled.div`
         margin-top: 150px;
         
         .inline {
-            font-size: calc(40*100/820*1vw);
+            font-size: 32px;
+            br {display:none}
+            .right {
+                text-align: left;
+            }
             .desc {
                 font-size: 16px;
             }
@@ -183,7 +187,7 @@ const Tbx = styled.div`
     @media screen and (max-width: 480px) {
         
         .inline {
-            font-size: 18px;
+            font-size: 20px;
             .desc {
                 font-size: 14px;
             }
@@ -298,7 +302,7 @@ export default function ImbLayout({cursorRef} : CircleProps) {
 
         <Imb>
 
-            <Cricle cursorRef={cursorRef}/>
+            <Cricle/>
 
             <SubLayoutTit>
                 <p>wanna e<span>xp</span>erience</p>
@@ -341,8 +345,7 @@ export default function ImbLayout({cursorRef} : CircleProps) {
             <Tbx ref={tbxRef}>
                 <div className="inline">
                     <p className="right">In all areas where</p>
-                    <div>visual communication is needed in our daily lives,</div>
-                    <div>NITOR wants to spread that <i>light</i> constantly.</div>
+                    <div>visual communication is needed in our daily lives,<br/>NITOR wants to spread that <i>light</i> constantly.</div>
                     {
                         i18n.language === "ko" ?
                         <p className="desc">

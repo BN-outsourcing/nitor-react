@@ -33,7 +33,7 @@ const Wrapper = styled.div<WrapperProps>`
     @media screen and (max-width: 820px) {
         margin-top: ${props=>{
             if(props.$language === "ko") {
-                return 175
+                return 150
             }else{
                 return 225
             }

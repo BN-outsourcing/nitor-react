@@ -2,13 +2,12 @@ import styled from "styled-components"
 import ImbLayout from "./ImbLayout";
 import ImgGridLayout from "./ImgGridLayout";
 import GridLayout from "./GridLayout";
-import { useCallback, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import TextPlugin from "gsap/TextPlugin";
 import { useGSAP } from "@gsap/react";
 import { SubLayout } from "../../components/Layout/SubLayout";
-import { CursorType1 } from "../../components/Cursor";
 
 const Wrppaer = styled.div`
     max-width: 1600px;
@@ -32,7 +31,7 @@ const ScrollDown = styled.div`
     i {
         font-size: 22px;
         letter-spacing: -0.025em;
-        margin-top: calc(15/22*1em);
+        margin-top: ${15/22}em;
     }
     &.act {
         opacity: 0;
@@ -63,7 +62,7 @@ export default function About() {
 
     },[subRef.current]);
 
-    const curosrRef = useRef<HTMLDivElement>(null);
+    /* const curosrRef = useRef<HTMLDivElement>(null);
     const onMove = useCallback((e : React.MouseEvent<HTMLElement>)=>{
         const cosX = e.clientX;
         const cosY = e.clientY;
@@ -77,7 +76,7 @@ export default function About() {
 
         }
 
-    },[curosrRef.current]);
+    },[curosrRef.current]); */
 
     useGSAP(()=>{
         
@@ -104,12 +103,9 @@ export default function About() {
             <SubLayout
                 ref={subRef}
                 $page="about"
-                onMouseMove={(e)=>onMove(e)}
             >
                 <Wrppaer>
-                    <ImbLayout
-                        cursorRef={curosrRef}
-                    />
+                    <ImbLayout/>
                 </Wrppaer>
 
                 <ImgGridLayout/>
@@ -119,10 +115,10 @@ export default function About() {
                 </Wrppaer>  
 
             </SubLayout>
-            <CursorType1
+            {/* <CursorType1
                 ref={curosrRef}
             >당신과 우리의 영감을 위해 <img src="/image/icon/light.png" alt="" />
-            </CursorType1>
+            </CursorType1> */}
         </>
     )
 

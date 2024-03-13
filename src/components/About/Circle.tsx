@@ -6,7 +6,7 @@ import { useQuery } from "react-query";
 import styled from "styled-components";
 
 export type CircleProps = {
-    cursorRef : React.RefObject<HTMLDivElement>
+    cursorRef? : React.RefObject<HTMLDivElement>
 }
 
 const CricleLayout = styled.div`
@@ -77,19 +77,19 @@ export default function Cricle({cursorRef} : CircleProps) {
 
     const imgOver = useCallback(()=>{
         setOver(true);
-        gsap.to(cursorRef.current,{
+        /* gsap.to(cursorRef.current,{
             scale : 1,
             duration : 0.4,
-        })
-    },[cursorRef.current]);
+        }) */
+    },[]);
 
     const imgLeave = useCallback(()=>{
         setOver(false);
-        gsap.to(cursorRef.current,{
+        /* gsap.to(cursorRef.current,{
             scale : 0,
             duration : 0.4,
-        })
-    },[cursorRef.current]);
+        }) */
+    },[]);
 
     useEffect(()=>{
 

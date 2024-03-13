@@ -34,7 +34,7 @@ const Grid = styled.div`
 const Items = styled.div`
 
     position: relative;
-    /* border-radius: 20px; */
+    border-radius: 20px;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

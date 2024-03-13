@@ -11,8 +11,8 @@ const Footer = styled.footer<PageProps>`
     box-sizing: border-box;
     z-index: 2;
     color: #fff;
-    text-transform: uppercase;
     font-family: 'Neue Haas Grotesk Display Pro';
+    text-transform: uppercase;
     font-weight: 500;
     /* padding: 40px 0; */
     padding: 25px 0;
@@ -29,13 +29,9 @@ const Footer = styled.footer<PageProps>`
 
 `;
 
-const Wrapper = styled.div<PageProps>`
+const Wrapper = styled.div`
     width: ${100 - (100/1920*100)}%;
-    max-width: ${props=>{
-        if(props.$page !== "main"){
-            return "1600px";
-        }
-    }};
+    max-width: 1600px;
     margin: 0 auto;
     display: flex;
     align-items: flex-end;
@@ -43,8 +39,7 @@ const Wrapper = styled.div<PageProps>`
     gap: 30px;
 
     @media screen and (max-width : 820px) {
-        flex-direction: column;
-        align-items: center;
+        display: block;
     }
 
 `;
@@ -54,8 +49,8 @@ export const Address = styled.div`
     flex-wrap: wrap;
     gap: 25px;
     font-family: 'Neue Haas Grotesk Display Pro';
-    text-transform: uppercase;
     font-weight: 500;
+    text-transform: capitalize;
 
     dl {
         &:nth-of-type(1){
@@ -64,15 +59,7 @@ export const Address = styled.div`
     }
 
     @media screen and (max-width:820px) {
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
-
-        dl {
-            &:nth-of-type(1){
-                flex: auto;
-            }
-        }
+        
 
     }
 
@@ -103,8 +90,8 @@ const Copy = styled.div`
         margin-top: 30px;
     }
     @media screen and (max-width : 820px) {
-        font-size: 14px;
-        margin: 0 auto;
+        font-size: 12px;
+        margin: 30px auto 0;
         text-align: center;
     }
 `;
@@ -160,25 +147,25 @@ export default function FooterLayout() {
     return (
         <Footer $page={footerState}>
 
-            <Wrapper $page={footerState}>
+            <Wrapper>
 
                 {
                     pathname !== "/" ?
                     <Address>
 
                         <AddressDl>
-                            <dt>Address</dt>
+                            <dt>ADDRESS</dt>
                             <dd>3F, 10 Worldcup bukro 42 dagil, Mapogu, Seoul, S. Korea</dd>
                         </AddressDl>
 
                         <AddressDl>
-                            <dt>tel.</dt>
+                            <dt>TEL.</dt>
                             <dd>+82 02 2039 7282</dd>
                         </AddressDl>
                         
                         <AddressDl>
-                            <dt>Mail</dt>
-                            <dd>design@nitordesign.net</dd>
+                            <dt>MAIL</dt>
+                            <dd>sid@nitordesign.net</dd>
                         </AddressDl>
 
                     </Address>

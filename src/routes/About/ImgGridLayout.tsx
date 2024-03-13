@@ -145,8 +145,10 @@ const EngText = styled.div`
     }
     
     @media screen and (max-width : 820px) {
-        font-size: calc(26*100/820*1vw);
+        font-size: 32px;
+        br {display:none;}
         div {
+            text-align: left;
             padding-right: 0;
             white-space: normal;
             word-break: keep-all;
@@ -154,7 +156,7 @@ const EngText = styled.div`
     }
 
     @media screen and (max-width : 480px) {
-        font-size: 18px;
+        font-size: 20px;
         div {
             padding-right: 0;
             white-space: normal;

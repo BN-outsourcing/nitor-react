@@ -44,7 +44,7 @@ const TagLayout = styled.nav`
         transform: translateY(-50%);
         width: 0;
         height: 42px;
-        border-radius: 10px;
+        border-radius: 1000px;
         background: #fff;
         pointer-events: none;
         z-index: -1;

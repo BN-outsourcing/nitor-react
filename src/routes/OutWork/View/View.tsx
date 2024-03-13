@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components"
 import { ColorP } from "../../../components/p";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import { Link, useParams } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { Navigation } from "swiper/modules";
 import gsap from "gsap";
 import { blurAnimtaion, getTrigger } from "../../../utils/gsap";
@@ -150,7 +150,7 @@ const Img = styled.div`
 const SlideBox = styled.div`
     margin-top: 80px;
     position: relative;
-    cursor: grab;
+    cursor: none;
 
     .swiper-slide {
         position: relative;
@@ -186,7 +186,7 @@ const Button = styled.button<ButtonType>`
     z-index: 2;
     width : calc(120/18*1em);
     height : calc(54/18*1em);
-    border-radius : 10px;
+    border-radius : 10000px;
     font-size : 18px;
     font-family: 'Neue Haas Grotesk Display Pro';
     font-weight: 500;
@@ -230,6 +230,7 @@ const Button = styled.button<ButtonType>`
     }
 
     @media screen and (max-width : 820px) {
+        display : none;
         ${props=>{
         switch(props.$type){
             case "right" :
@@ -347,7 +348,7 @@ const Back = styled.div`
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        border-radius: 15px;
+        border-radius: 1000px;
         color: #fff;
         border: 1px solid #fff;
         background-color: #000;
@@ -385,7 +386,7 @@ export default function View() {
 
     const {data} = useQuery("iteminfo",()=>itemInfoFetch(id));
 
-    const slideMove = (e : React.MouseEvent<HTMLDivElement>)=>{
+    const slideMove = useCallback((e : React.MouseEvent<HTMLDivElement>)=>{
         if(dragRef.current){
 
             const target = dragRef.current as HTMLElement;
@@ -394,14 +395,14 @@ export default function View() {
             const cosY = e.clientY;
 
             gsap.set(target,{
-                top : cosY,
-                left : cosX
+                top : cosY - (target.clientHeight / 2),
+                left : cosX - (target.clientWidth / 2)
             })
 
         }
-    }
+    },[dragRef.current]);
 
-    const slideOver = ()=>{
+    const slideOver = useCallback(()=>{
         if(dragRef.current){
             gsap.to(dragRef.current,{
                 scale : 1,
@@ -409,9 +410,9 @@ export default function View() {
                 duration : 0.2
             })
         }
-    }
+    },[dragRef.current])
 
-    const slideLeave = ()=>{
+    const slideLeave = useCallback(()=>{
         if(dragRef.current){
             gsap.to(dragRef.current,{
                 scale : 0,
@@ -419,7 +420,7 @@ export default function View() {
                 duration : 0.2
             })
         }
-    }
+    },[dragRef.current]);
 
 
     // 타이틀 부분 애니메이션
@@ -450,18 +451,11 @@ export default function View() {
     },{dependencies : [titleRef.current,data], scope : titleRef});
 
     // 슬라이드 부분 애니메이션
-    const slideRef = useRef(null);
+    const slideRef = useRef<SwiperRef>(null);
     useGSAP(()=>{
-
-        if(slideRef.current){
-
-            const target = slideRef.current as HTMLElement;
-
-            blurAnimtaion(target);
-
-        }
-
-    },{dependencies : [slideRef.current,data], scope : slideRef});
+        if(!slideRef.current) return;
+        blurAnimtaion(slideRef.current);
+    },[slideRef.current]);
 
     // 페이징
     const pageRef = useRef(null);
@@ -470,7 +464,6 @@ export default function View() {
         if(pageRef.current){
 
             const target = pageRef.current as HTMLElement;
-
             blurAnimtaion(target);
 
         }
@@ -508,7 +501,6 @@ export default function View() {
                         <SlideBox 
                             onMouseMove={(e)=>slideMove(e)}
                             onMouseLeave={slideLeave}
-                            ref={slideRef}
                         >
                             <Button 
                                 ref={prevRef}
@@ -516,8 +508,9 @@ export default function View() {
                                 onMouseOver={slideLeave}
                             ><i className="xi-arrow-left"></i> Prev</Button>
                             <Swiper
-                                spaceBetween={20}
-                                slidesPerView={1.1}
+                                ref={slideRef}
+                                spaceBetween={0}
+                                slidesPerView={1}
                                 centeredSlides={true}
                                 loop={true}
                                 modules={[Navigation]}
@@ -552,9 +545,9 @@ export default function View() {
                                         const cosY = event.clientY;
                             
                                         gsap.set(target,{
-                                            top : cosY,
-                                            left : cosX
-                                        });
+                                            top : cosY - (target.clientHeight / 2),
+                                            left : cosX - (target.clientWidth / 2)
+                                        })
                             
                                     }
                                 }}
@@ -594,12 +587,14 @@ export default function View() {
                     null
                 }
             </SubLayout>
+
             <Drag ref={dragRef}>
                 <dl>
-                    <dt>🖐️</dt>
+                    <dt><img src="/image/icon/hand.png" alt="손" width={26} /></dt>
                     <dd>DRAG</dd>
                 </dl>
             </Drag>
+
         </>
     )
 }

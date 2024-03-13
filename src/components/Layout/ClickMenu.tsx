@@ -51,6 +51,13 @@ const Wrapper = styled.div`
 const Flex = styled.div`
     display: flex;
     flex-direction: column;
+
+    @media screen and (max-width:820px) {
+        h2 {
+            display: none;
+        }
+    }
+
 `;
 
 const Address = styled.address`
@@ -64,10 +71,23 @@ const Address = styled.address`
         + p {
             margin-top: 30px;
         }
+        span {
+            color: #666666;
+        }
     }
 
     @media screen and (max-width : 820px) {
-        margin-top: 30px;
+        position: absolute;
+        bottom: 5%;
+
+        font-size: 14px;
+
+        p {
+            + p {
+                margin-top: 15px;
+            }
+        }
+
     }
 
 `;
@@ -102,9 +122,9 @@ const Links = styled.ul`
     }
 
     @media screen and (max-width : 820px) {
-        font-size: 48px;
+        font-size: 70px;
         order: -1;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
         width: 100%;
         a {
             display: block;
@@ -112,7 +132,7 @@ const Links = styled.ul`
     }
 
     @media screen and (max-width : 480px) {
-        font-size: 36px;
+        font-size: 50px;
     }
 
 `;
@@ -121,9 +141,7 @@ const Links = styled.ul`
 export default function ClickMenu() {
 
     const [headerState,setHeaderState] = useRecoilState(headerAtom);
-
     const {pathname} = useLocation();
-
     useEffect(()=>{
         setHeaderState(false);
     },[pathname]);
@@ -142,10 +160,10 @@ export default function ClickMenu() {
                             <br/>Seoul, Republic of Korea
                         </p>
                         <p>
-                            tel. +82 02 2039 7282
+                            <span>Tel</span> +82 02 2039 7282
                         </p>
                         <p>
-                            Mail . sid@nitordesign.net
+                            <span>Mail</span> sid@nitordesign.net
                         </p>
                     </Address>
                 </Flex>

@@ -10,6 +10,7 @@ import { listTagClickAtom } from "../../../Atom/tag";
 import Tag from "../../../components/List/Tag";
 import {CursorType1} from "../../../components/Cursor";
 import { itemFetch } from "../../../utils/APIfetch";
+import { useTranslation } from "react-i18next";
 
 const Wrapper = styled.div`
     max-width: 1820px;
@@ -22,6 +23,8 @@ const Wrapper = styled.div`
 export default function List() {
 
     const {data : item} = useQuery('itemData',itemFetch);
+
+    const {t} = useTranslation();
 
     const [filterItem,setFilterItem] = useState<Item[]>([]);
     const clickTag = useRecoilValue(listTagClickAtom);
@@ -85,7 +88,7 @@ export default function List() {
             </SubLayout>
 
             <CursorType1 ref={glassRef}>
-                프로젝트 더 알아보기 <img src="/image/icon/magnifying.png" alt="" />
+                {t('list.glass')} <img src="/image/icon/magnifying.png" alt="" />
             </CursorType1>
 
         </>

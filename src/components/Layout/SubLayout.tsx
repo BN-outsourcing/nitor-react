@@ -8,11 +8,11 @@ import { blurAnimtaion } from "../../utils/gsap";
 // 서브페이지 레이아웃
 export const SubLayout = styled.div<PageProps>`
     color: #fff;
-    padding: 140px 0 150px;
+    padding: 250px 0 150px;
     position: relative;
 
     @media screen and (max-width : 820px) {
-        padding: 140px 0 100px;
+        padding: 180px 0 100px;
     }
 
     ${props=>{
