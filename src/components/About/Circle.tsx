@@ -47,7 +47,7 @@ const imageLengthFetch = async () => {
     return imageLength;
 }
 
-export default function Cricle({cursorRef} : CircleProps) {
+export default function Cricle() {
 
     const {data : max} = useQuery('imageLength',imageLengthFetch);
     const [number,setNumber] = useState(0);

@@ -156,8 +156,7 @@ export default function ClickMenu() {
                     </Tit>
                     <Address>
                         <p>
-                            3F, 10 Worldcup bukro 42 dagil, Mapogu,
-                            <br/>Seoul, Republic of Korea
+                            10, World Cup buk-ro 42da-gil, Mapo-gu,<br/>Seoul, Republic of Korea
                         </p>
                         <p>
                             <span>Tel</span> +82 02 2039 7282

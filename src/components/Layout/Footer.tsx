@@ -50,7 +50,7 @@ export const Address = styled.div`
     gap: 25px;
     font-family: 'Neue Haas Grotesk Display Pro';
     font-weight: 500;
-    text-transform: capitalize;
+    text-transform: none;
 
     dl {
         &:nth-of-type(1){
@@ -155,11 +155,11 @@ export default function FooterLayout() {
 
                         <AddressDl>
                             <dt>ADDRESS</dt>
-                            <dd>3F, 10 Worldcup bukro 42 dagil, Mapogu, Seoul, S. Korea</dd>
+                            <dd>10, World Cup buk-ro 42da-gil, Mapo-gu,Seoul, Republic of Korea</dd>
                         </AddressDl>
 
                         <AddressDl>
-                            <dt>TEL.</dt>
+                            <dt>TEL</dt>
                             <dd>+82 02 2039 7282</dd>
                         </AddressDl>
                         

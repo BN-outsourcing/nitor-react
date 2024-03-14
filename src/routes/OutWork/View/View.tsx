@@ -374,7 +374,7 @@ const Back = styled.div`
 export default function View() {
 
     const {id} = useParams();
-    // const [data,setData] = useState<Item | null>(null);
+    const {data} = useQuery(["iteminfo",id],()=>itemInfoFetch(id));
     const {i18n} = useTranslation();
 
     const [index,setIndex] = useState('00');
@@ -383,8 +383,6 @@ export default function View() {
     const nextRef = useRef(null);
     const prevRef = useRef(null);
     const dragRef = useRef(null);
-
-    const {data} = useQuery("iteminfo",()=>itemInfoFetch(id));
 
     const slideMove = useCallback((e : React.MouseEvent<HTMLDivElement>)=>{
         if(dragRef.current){

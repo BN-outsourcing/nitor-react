@@ -4,7 +4,7 @@ import { useRef } from "react";
 import styled from "styled-components"
 import { getTrigger } from "../../utils/gsap";
 import SubLayoutTit from "../../components/Layout/SubLayout";
-import Cricle, { CircleProps } from "../../components/About/Circle";
+import Cricle from "../../components/About/Circle";
 import { useTranslation } from "react-i18next";
 
 const Imb = styled.div`
@@ -135,7 +135,7 @@ const Tbx = styled.div`
 
     .inline {
 
-        font-size: calc(42*100/1920*1vw);
+        font-size: ${36*100/1920}vw;
         font-family: 'Neue Haas Grotesk Display Pro';
         text-transform: uppercase;
         font-weight: 500;
@@ -166,13 +166,18 @@ const Tbx = styled.div`
 
     @media screen and (max-width: 1280px) {
         margin-top: 300px;
+
+        .inline {
+            font-size: ${32*100/1280}vw;
+        }
+
     }
 
     @media screen and (max-width: 820px) {
         margin-top: 150px;
         
         .inline {
-            font-size: 32px;
+            font-size: 28px;
             br {display:none}
             .right {
                 text-align: left;
@@ -197,7 +202,7 @@ const Tbx = styled.div`
 
 `;
 
-export default function ImbLayout({cursorRef} : CircleProps) {
+export default function ImbLayout() {
 
     const {i18n} = useTranslation();
 

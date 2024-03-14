@@ -4,10 +4,9 @@ import ImgGridLayout from "./ImgGridLayout";
 import GridLayout from "./GridLayout";
 import { useRef, useState } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import TextPlugin from "gsap/TextPlugin";
 import { useGSAP } from "@gsap/react";
 import { SubLayout } from "../../components/Layout/SubLayout";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const Wrppaer = styled.div`
     max-width: 1600px;
@@ -37,8 +36,6 @@ const ScrollDown = styled.div`
         opacity: 0;
     }
 `;
-
-gsap.registerPlugin(ScrollTrigger,TextPlugin);
 
 export default function About() {
 

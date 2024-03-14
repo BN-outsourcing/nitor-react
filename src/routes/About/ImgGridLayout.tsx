@@ -127,13 +127,14 @@ const ImgGridItem = styled.div`
 
 const EngText = styled.div`
     width: ${100 - (100/1920*100)}%;
+    max-width: 1600px;
     margin: 0 auto;
-    font-size: ${42*100/1920}vw;
+    font-size: ${36*100/1920}vw;
     text-transform: uppercase;
     margin-top: ${70/42}em;
     div {
         box-sizing: border-box;
-        padding-right: ${540*100/1920}vw;
+        width: 70%;
         text-align: right;
         white-space: nowrap;
         font-family: 'Neue Haas Grotesk Display Pro';
@@ -143,15 +144,23 @@ const EngText = styled.div`
             text-align: left;
         }
     }
-    
+
+    @media screen and (max-width: 1280px) {
+        font-size: ${32*100/1280}vw;
+        div {
+            width: 82%;
+        }
+    }
+
     @media screen and (max-width : 820px) {
-        font-size: 32px;
+        font-size: 28px;
         br {display:none;}
         div {
             text-align: left;
             padding-right: 0;
             white-space: normal;
             word-break: keep-all;
+            width: 100%;
         }
     }
 

@@ -6,6 +6,11 @@ import reset from "styled-reset";
 import About from "./routes/About/About";
 import List from "./routes/OutWork/List/List";
 import View from "./routes/OutWork/View/View";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import TextPlugin from "gsap/TextPlugin";
+
+gsap.registerPlugin(ScrollTrigger,TextPlugin);
 
 const router = createBrowserRouter([
   {
