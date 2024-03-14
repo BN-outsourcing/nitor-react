@@ -38,7 +38,7 @@ const Items = styled.div`
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    cursor: pointer;
+    cursor: none;
 
     &::before {
         position: absolute;

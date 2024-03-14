@@ -333,12 +333,18 @@ const Page = styled.div`
         }
     }
 
+    @media screen and (max-width : 820px) {
+        p {
+            font-size: 18px;
+        }
+    }
+
 `;
 
 const Back = styled.div`
     font-family: 'Neue Haas Grotesk Display Pro';
     font-weight: 500;
-    font-size: 18px;
+    font-size: 16px;
     /* margin: 45px auto 0; */
     text-align: center;
     margin-left: 20px;
@@ -351,7 +357,7 @@ const Back = styled.div`
         border-radius: 1000px;
         color: #fff;
         border: 1px solid #fff;
-        background-color: #000;
+        background-color: #101010;
         transition: .4s;
         transition-property: background-color,color;
         &:hover {
@@ -361,11 +367,11 @@ const Back = styled.div`
     }
 
     @media screen and (max-width: 1024px) {
-        font-size: 16px;
+        font-size: 14px;
     }
 
     @media screen and (max-width: 820px) {
-        font-size: 14px;
+        font-size: 12px;
     }
 
 `;
