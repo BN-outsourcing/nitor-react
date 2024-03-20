@@ -35,46 +35,46 @@
     "product" : [
         {
             "id" : 1,
-            "tag" : [1,2],
-            "image" : ["/image/outwork/view/test01.png","/image/outwork/view/test01.png","/image/outwork/view/test01.png","/image/outwork/view/test01.png","/image/outwork/view/test01.png"],
+            "tag" : [1,3],
+            "image" : ["/image/outwork/view/eats01.jpg","/image/outwork/view/eats02.jpg"],
             "smallText" : "EATS PUBLIK MARKET",
             "ko" : {
-                "title" : "PUBLIK 가산<br/>잇츠 퍼블릭 마켓",
-                "desc" : "PUBLIK은 가산에 위치한 서울 최대규모의 지식산업센터로 새로운 라이프스타일 아이디어와 지적 영감을 위한<br/>콘텐츠 프로그램을 더한 복합문화공간을 조성합니다. PUBLIK의 푸드코트 브랜드 ‘잇츠 퍼블릭 마켓’은 기존 푸드 홀의 개념을 확장시켜<br/>다양한 맛집 셀렉션과 함께 식재료 판매, 보틀샵, 딜리버리, 투고 서비스 등 다양한 식문화 경험을 체험할 수 있는 공간입니다.<br/><br/>니토르는 ‘잇츠 퍼블릭 마켓’의 브랜드 네이밍, 살아있는 즐거움이 통통 튀는 브랜드 컨셉과 아이덴티티 및 어플리케이션 디자인을 개발하여<br/>브랜드 전반에 걸친 통합 브랜드 아이덴티티를 구축했습니다."
+                "title" : "잇츠<br/>퍼블릭 마켓",
+                "desc" : "PUBLIK은 가산에 위치한 서울 최대규모의 지식산업센터로, 새로운 라이프스타일과 지적 영감을 공유할 수 있도록 다양한 콘텐츠를 제공하는 문화 공간입니다. PUBLIK의 푸드코트 브랜드 ‘잇츠 퍼블릭 마켓’은 기존 푸드 코트의 개념을 확장시켜 다양한 맛집 셀렉션과 함께 식재료 판매, 보틀샵,딜리버리, grab&go 서비스 등 색다른 식도락을 체험할 수 있는 공간입니다.<br>니토르는 ‘잇츠 퍼블릭 마켓’의 브랜드 네이밍, 살아있는 즐거움이 통통 튀는 브랜드 컨셉과 아이덴티티와 더불어 어플리케이션 디자인을 개발하여 브랜드 전반에 걸친 통합 브랜드 아이덴티티를 구축했습니다."
             },
             "en" : {
-                "title" : "ENG TEST",
-                "desc" : "ENG TEST ENG TEST ENG TEST ENG TEST ENG TEST ENG TEST ENG TEST"
+                "title" : "EAT's<br>PUBLIK MARKET",
+                "desc" : "PUBLIK is Seoul's largest knowledge industry complex located in Gasan, a cultural space that produces various contents to share new lifestyles and intellectual inspiration. PUBLIK's food court brand EAT's Public Market expands thconcept of the existing food court so that you can experience various food and cultural programs such as grocery market, bottle shop, delivery, and grab and go services along with selection of famous restaurants. <br> NITOR developed the brand naming of EAT's Public Market, the brand concept of live entertainment, and the identity and application design to build an integrated brand identity across the brand."
             }
             
         },
         {
             "id" : 2,
-            "tag" : [3,4],
-            "image" : ["/image/outwork/view/test01.png","/image/outwork/view/test01.png","/image/outwork/view/test01.png","/image/outwork/view/test01.png","/image/outwork/view/test01.png"],
-            "smallText" : "test02",
+            "tag" : [1,3],
+            "image" : ["/image/outwork/view/GLK02.jpg","/image/outwork/view/GLK04.jpg","/image/outwork/view/GLK01.jpg","/image/outwork/view/GLK03.jpg"],
+            "smallText" : "Global Leadership Kardett",
             "ko" : {
-                "title" : "테스트 입니다",
-                "desc" : "테스트 입니다02 테스트 입니다02 테스트 입니다02 테스트 입니다02 테스트 입니다02 테스트 입니다02 테스트 입니다02"
+                "title" : "GLK<br>영어 유치원",
+                "desc" : "GLK(Global Leadership kadett)는 울산에 위치한 영어 유치원으로, 유아들을 위한 전문 교육프로세스를 기반으로 체계화된 프로그램을 제공하여 세계적 리더 양성을 목표합니다.<br> 니토르는 새로운 도약을 위해 브랜드 아이덴티티를 재정립하고자 하는 GLK의 시스템을 다양한 시선에서 탐구하여 각 공간의 테마에 맞는비주얼 아이덴티티를 개발했습니다. 각각의 로고들은 필요에 따라 입학지원서, 명함, 머그컵, 유치원복, 브로슈어, 교육자료 등 다양한 어플리케이션에 적용되어 실제작되었습니다."
             },
             "en" : {
-                "title" : "ENG TEST",
-                "desc" : "ENG TEST ENG TEST ENG TEST ENG TEST ENG TEST ENG TEST ENG TEST"
+                "title" : "Global<br>Leadership<br>Kardett",
+                "desc" : "Global Leadership Kadett (GLK) is an English-language kindergarten located in Ulsan that aims to foster global leaders by providing organized programs based on specialized educational processes for infants. <br> Nitor explored GLK's system to reestablish its brand identity for a new leap from different perspectives, developing visual identities that fit the themes of each space. Each logo was applied to various applications such as application forms, business cards, mugs, kindergarten uniforms, brochures, and educational materials as needed."
             }
             
         },
         {
             "id" : 3,
-            "tag" : [2,4],
-            "image" : ["/image/outwork/view/test01.png","/image/outwork/view/test01.png","/image/outwork/view/test01.png","/image/outwork/view/test01.png","/image/outwork/view/test01.png"],
-            "smallText" : "test03",
+            "tag" : [2,3],
+            "image" : ["/image/outwork/view/con06.jpg","/image/outwork/view/con07.jpg","/image/outwork/view/con01.jpg","/image/outwork/view/con02.jpg","/image/outwork/view/con04.jpg","/image/outwork/view/con05.jpg"],
+            "smallText" : "Corning",
             "ko" : {
-                "title" : "테스트 입니다",
-                "desc" : "테스트 입니다03 테스트 입니다03 테스트 입니다03 테스트 입니다03 테스트 입니다03 테스트 입니다03 테스트 입니다03"
+                "title" : "코닝<br>한국 투자<br>50주년 기념전",
+                "desc" : "코닝은 특수 유리, 세라믹 등 특수유리를 제조하는 미국의 기업으로 1973년 국내에서 합작사 ‘삼성코닝’을 설립한 이후 50년간 협력 관계를 지속해왔습니다. 2023년 9월 코닝 미국 본사의 한국투자 50주년 기념을 기리며 충남 아산에 위치한 사옥에서 기념식을 열었습니다. <br> 니토르는 ‘코닝 한국투자 50주년 기념행사’의 행사 공간 내 전시 그래픽 개발을 맡았습니다. 코닝의 주요 사업분야 및 주요 제품을 설명하는 포디움 등의 세부 그래픽을 디자인하였고, 이를 구현하기 위한 체계적인 가이드라인 구축에 힘썼습니다.<br><br>*본 KV는 보안상 전시 설명을 위하여 임의로 제작한 시안임을 알려드립니다."
             },
             "en" : {
-                "title" : "ENG TEST",
-                "desc" : "ENG TEST ENG TEST ENG TEST ENG TEST ENG TEST ENG TEST ENG TEST"
+                "title" : "Corning’s<br>50th Anniversary<br>in Korea Event<br>Exhibition",
+                "desc" : "Corning is an American company that manufactures special glass such as special glass and ceramic, and has been cooperating for 50 years since it established a joint venture called Samsung Corning in Korea in 1973. In September 2023, the company held a ceremony at its headquarters in Asan, South Chungcheong Province, to commemorate the 50th anniversary of Corning's investment in Korea. <br>Nitor was in charge of developing graphics for the exhibition space for the 50th anniversary of Koning's investment in Korea. Detailed graphics such as podium that describe Koning's major business areas and major products We designed it and worked hard to establish systematic guidelines to implement it.<br><br>*We would like to inform you that this KV was arbitrarily produced for the purpose of explaining the exhibition for the sake of security."
             }
             
         }

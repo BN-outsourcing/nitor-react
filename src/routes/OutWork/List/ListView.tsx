@@ -39,6 +39,7 @@ const Items = styled.div`
     background-position: center;
     background-size: cover;
     cursor: none;
+    overflow: hidden;
 
     &::before {
         position: absolute;

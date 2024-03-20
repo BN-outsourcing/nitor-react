@@ -97,7 +97,6 @@ const TitleBox = styled.div`
         dl {
             flex-direction: column;
             gap: 25px;
-            margin-top: 5px;
             dt {
                 font-size: 42px;
             }
@@ -164,6 +163,7 @@ const SlideBox = styled.div`
             background: rgba(000,000,000,0.8);
             opacity: 1;
             transition: opacity .4s;
+            border-radius: 20px;
         }
 
         &.swiper-slide-active {
@@ -172,6 +172,14 @@ const SlideBox = styled.div`
             }
         }
 
+    }
+
+    @media screen and (max-width:1024px) {
+        .swiper-slide {
+            &::after {
+                border-radius: 10px;
+            }
+        }
     }
 
 `;
@@ -482,7 +490,7 @@ export default function View() {
                     <>
                         <Wrapper>
                             <TitleBox ref={titleRef}>
-                                <p className="e-tit">{data.smallText}</p>
+                                {/* <p className="e-tit">{data.smallText}</p> */}
                                 <dl className="tit">
                                     <dt dangerouslySetInnerHTML={{__html : data[i18n.language].title}}>
                                     </dt>
