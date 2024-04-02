@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components"
 import { ColorP } from "../../../components/p";
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useCallback, useRef, useState } from "react";
 import { Navigation } from "swiper/modules";
 import gsap from "gsap";
@@ -356,7 +356,8 @@ const Back = styled.div`
     /* margin: 45px auto 0; */
     text-align: center;
     margin-left: 20px;
-    a {
+    a,
+    button {
         width: calc(210/20*1em);
         height: calc(50/20*1em);
         display: inline-flex;
@@ -368,6 +369,7 @@ const Back = styled.div`
         background-color: #101010;
         transition: .4s;
         transition-property: background-color,color;
+        cursor: pointer;
         &:hover {
             background-color: #fff;
             color: #000;
@@ -390,6 +392,7 @@ export default function View() {
     const {id} = useParams();
     const {data} = useQuery(["iteminfo",id],()=>itemInfoFetch(id));
     const {i18n} = useTranslation();
+    const navigate = useNavigate();
 
     const [index,setIndex] = useState('00');
     const [last,setLast] = useState('00');
@@ -591,6 +594,7 @@ export default function View() {
                             </Page>
 
                             <Back>
+                                {/* <button onClick={()=>navigate(-1)}>BACK TO LIST</button> */}
                                 <Link to={'/outwork'}>BACK TO LIST</Link>
                             </Back>
                         </Flex>

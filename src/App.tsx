@@ -1,4 +1,4 @@
-import {RouterProvider, createBrowserRouter } from "react-router-dom";
+import {Route, Routes } from "react-router-dom";
 import Main from "./routes/Main";
 import Layout from "./components/Layout";
 import { createGlobalStyle } from "styled-components";
@@ -12,7 +12,7 @@ import TextPlugin from "gsap/TextPlugin";
 
 gsap.registerPlugin(ScrollTrigger,TextPlugin);
 
-const router = createBrowserRouter([
+/* const router = createBrowserRouter([
   {
     path : "/",
     element : <Layout/>,
@@ -40,7 +40,7 @@ const router = createBrowserRouter([
       }
     ]
   }
-]);
+]); */
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -63,7 +63,16 @@ function App() {
   return (
     <>
       <GlobalStyle/>
-      <RouterProvider router={router}/>
+      <Routes>
+        <Route path="/" element={<Layout/>}>
+          <Route index element={<Main/>}/>
+          <Route path="about" element={<About/>}/>
+          <Route path="outwork">
+            <Route index element={<List/>}/>
+            <Route path="view/:id" element={<View/>}/>
+          </Route>
+        </Route>
+      </Routes>
     </>
   )
 }

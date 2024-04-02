@@ -7,9 +7,9 @@
     },
     "tag" : [
         {
-            "type" : 1,
-            "name" : "BRANDING",
-            "color" : "color01"
+            "type" : 3,
+            "name" : "GRAPHIC",
+            "color" : "color03"
         },
         {
             "type" : 2,
@@ -17,9 +17,9 @@
             "color" : "color02"
         },
         {
-            "type" : 3,
-            "name" : "GRAPHIC",
-            "color" : "color03"
+            "type" : 1,
+            "name" : "BRANDING",
+            "color" : "color01"
         },
         {
             "type" : 4,
@@ -36,20 +36,61 @@
         {
             "id" : 1,
             "tag" : [1,3],
-            "image" : ["/image/outwork/view/eats01.jpg","/image/outwork/view/eats02.jpg"],
+            "image" : ["/image/outwork/view/eats_thumb.jpg","/image/outwork/view/eats01.jpg","/image/outwork/view/eats02.jpg","/image/outwork/view/eats03.jpg","/image/outwork/view/eats04.jpg","/image/outwork/view/eats05.jpg","/image/outwork/view/eats06.jpg","/image/outwork/view/eats07.jpg","/image/outwork/view/eats08.jpg","/image/outwork/view/eats_edi_thumb.jpg","/image/outwork/view/eats10.jpg","/image/outwork/view/eats11.jpg","/image/outwork/view/eats12.jpg"],
             "smallText" : "EATS PUBLIK MARKET",
             "ko" : {
                 "title" : "잇츠<br/>퍼블릭 마켓",
-                "desc" : "PUBLIK은 가산에 위치한 서울 최대규모의 지식산업센터로, 새로운 라이프스타일과 지적 영감을 공유할 수 있도록 다양한 콘텐츠를 제공하는 문화 공간입니다. PUBLIK의 푸드코트 브랜드 ‘잇츠 퍼블릭 마켓’은 기존 푸드 코트의 개념을 확장시켜 다양한 맛집 셀렉션과 함께 식재료 판매, 보틀샵,딜리버리, grab&go 서비스 등 색다른 식도락을 체험할 수 있는 공간입니다.<br>니토르는 ‘잇츠 퍼블릭 마켓’의 브랜드 네이밍, 살아있는 즐거움이 통통 튀는 브랜드 컨셉과 아이덴티티와 더불어 어플리케이션 디자인을 개발하여 브랜드 전반에 걸친 통합 브랜드 아이덴티티를 구축했습니다."
+                "desc" : "PUBLIK은 가산에 위치한 서울 최대규모의 지식산업센터로, 새로운 라이프스타일과 지적 영감을 공유할 수 있도록 다양한 콘텐츠를 제공하는 문화 공간입니다. PUBLIK의 푸드코트 브랜드 ‘잇츠 퍼블릭 마켓’은 기존 푸드 코트의 개념을 확장시켜 다양한 맛집 셀렉션과 함께 식재료 판매, 보틀샵,딜리버리, grab&go 서비스 등 색다른 식도락을 체험할 수 있는 공간입니다.<br><br>니토르는 ‘잇츠 퍼블릭 마켓’의 브랜드 네이밍, 살아있는 즐거움이 통통 튀는 브랜드 컨셉과 아이덴티티와 더불어 어플리케이션 디자인을 개발하여 브랜드 전반에 걸친 통합 브랜드 아이덴티티를 구축했습니다."
             },
             "en" : {
                 "title" : "EAT's<br>PUBLIK MARKET",
                 "desc" : "PUBLIK is Seoul's largest knowledge industry complex located in Gasan, a cultural space that produces various contents to share new lifestyles and intellectual inspiration. PUBLIK's food court brand EAT's Public Market expands thconcept of the existing food court so that you can experience various food and cultural programs such as grocery market, bottle shop, delivery, and grab and go services along with selection of famous restaurants. <br> NITOR developed the brand naming of EAT's Public Market, the brand concept of live entertainment, and the identity and application design to build an integrated brand identity across the brand."
             }
-            
         },
         {
             "id" : 2,
+            "tag" : [4],
+            "image" : ["/image/outwork/view/eats_edi_thumb.jpg","/image/outwork/view/eats03.jpg","/image/outwork/view/eats05.jpg","/image/outwork/view/eats06.jpg","/image/outwork/view/eats07.jpg","/image/outwork/view/eats08.jpg","/image/outwork/view/eats10.jpg","/image/outwork/view/eats11.jpg","/image/outwork/view/eats12.jpg"],
+            "smallText" : "EATS PUBLIK MARKET",
+            "ko" : {
+                "title" : "잇츠<br/>퍼블릭 마켓",
+                "desc" : "PUBLIK은 가산에 위치한 서울 최대규모의 지식산업센터로, 새로운 라이프스타일과 지적 영감을 공유할 수 있도록 다양한 콘텐츠를 제공하는 문화 공간입니다. PUBLIK의 푸드코트 브랜드 ‘잇츠 퍼블릭 마켓’은 기존 푸드 코트의 개념을 확장시켜 다양한 맛집 셀렉션과 함께 식재료 판매, 보틀샵,딜리버리, grab&go 서비스 등 색다른 식도락을 체험할 수 있는 공간입니다.<br><br>니토르는 ‘잇츠 퍼블릭 마켓’의 브랜딩과 함께 푸드 패키지 디자인을 개발했습니다. 살아있는 즐거움이 통통 튀는 브랜드 컨셉에 맞게 쥬시한 쉐입과 컬러를 도출하여 투고박스, 에이프릴, 종이컵, 프라이컵 등의 패키지 디자인을 개발함과 동시에 브랜드 아이덴티티와의 통일성도 정립했습니다."
+            },
+            "en" : {
+                "title" : "EAT's<br>PUBLIK MARKET",
+                "desc" : ""
+            }
+        },
+        {
+            "id" : 11,
+            "tag" : [1,3],
+            "image" : ["/image/outwork/view/nitor_thumb.jpg","/image/outwork/view/nitor01.jpg","/image/outwork/view/nitor02.jpg","/image/outwork/view/nitor03.jpg","/image/outwork/view/nitor04.jpg","/image/outwork/view/nitor05.jpg","/image/outwork/view/nitor06.jpg","/image/outwork/view/nitor07.jpg","/image/outwork/view/nitor_edi_thumb.jpg","/image/outwork/view/nitor08.jpg","/image/outwork/view/nitor09.jpg","/image/outwork/view/nitor10.jpg"],
+            "smallText" : "NITOR",
+            "ko" : {
+                "title" : "니토르",
+                "desc" : "우리는 일상 속 비주얼 커뮤니케이션이 필요한 모든 분야에 영감의 빛을 끊임없이 확산시키는 그래픽디자인 에이전시 입니다.<br><br>라틴어로 '빛'과 '나아가다'라는 의미를 뜻하는 NITOR. 수많은 물음으로 가득찬 세상 속, 당신과 우리의 영감을 위해 끊임없이 나아가는 빛이라는 뜻을 지니고 있습니다. 알파벳 ‘T’를 중심으로 퍼져나가는 빛의 각도를 로고 쉐이프로 도출하였고, 날카로운 라인을 통해비주얼적으로 문제를 해결하는 니토르의 예리한 시각을 담아내었습니다.<br>이를 바탕으로 명함, 봉투, 메일 시그니처, 브로슈어 등의 어플리케이션을 개발하였습니다."
+            },
+            "en" : {
+                "title" : "NITOR",
+                "desc" : ""
+            }
+        },
+        {
+            "id" : 12,
+            "tag" : [4],
+            "image" : ["/image/outwork/view/nitor_edi_thumb.jpg","/image/outwork/view/nitor03.jpg","/image/outwork/view/nitor04.jpg","/image/outwork/view/nitor06.jpg","/image/outwork/view/nitor07.jpg","/image/outwork/view/nitor08.jpg","/image/outwork/view/nitor09.jpg","/image/outwork/view/nitor10.jpg"],
+            "smallText" : "NITOR",
+            "ko" : {
+                "title" : "니토르",
+                "desc" : ""
+            },
+            "en" : {
+                "title" : "NITOR",
+                "desc" : ""
+            }
+        },
+        {
+            "id" : 3,
             "tag" : [1,3],
             "image" : ["/image/outwork/view/GLK02.jpg","/image/outwork/view/GLK04.jpg","/image/outwork/view/GLK01.jpg","/image/outwork/view/GLK03.jpg"],
             "smallText" : "Global Leadership Kardett",
@@ -61,10 +102,23 @@
                 "title" : "Global<br>Leadership<br>Kardett",
                 "desc" : "Global Leadership Kadett (GLK) is an English-language kindergarten located in Ulsan that aims to foster global leaders by providing organized programs based on specialized educational processes for infants. <br> Nitor explored GLK's system to reestablish its brand identity for a new leap from different perspectives, developing visual identities that fit the themes of each space. Each logo was applied to various applications such as application forms, business cards, mugs, kindergarten uniforms, brochures, and educational materials as needed."
             }
-            
         },
         {
-            "id" : 3,
+            "id" : 18,
+            "tag" : [4],
+            "image" : ["/image/outwork/view/GLKED01.jpg","/image/outwork/view/GLKED02.jpg","/image/outwork/view/GLKED03.jpg","/image/outwork/view/GLKED04.jpg"],
+            "smallText" : "Global Leadership Kardett",
+            "ko" : {
+                "title" : "GLK<br>영어 유치원",
+                "desc" : "GLK(Global Leadership kadett)는 울산에 위치한 영어 유치원으로, 유아들을 위한 전문 교육프로세스를 기반으로 체계화된 프로그램을 제공하여 세계적 리더 양성을 목표합니다.<br> 니토르는 새로운 도약을 위해 브랜드 아이덴티티를 재정립하고자 하는 GLK의 시스템을 다양한 시선에서 탐구하여 각 공간의 테마에 맞는비주얼 아이덴티티를 개발했습니다. 각각의 로고들은 필요에 따라 입학지원서, 명함, 머그컵, 유치원복, 브로슈어, 교육자료 등 다양한 어플리케이션에 적용되어 실제작되었습니다."
+            },
+            "en" : {
+                "title" : "Global<br>Leadership<br>Kardett",
+                "desc" : "Global Leadership Kadett (GLK) is an English-language kindergarten located in Ulsan that aims to foster global leaders by providing organized programs based on specialized educational processes for infants. <br> Nitor explored GLK's system to reestablish its brand identity for a new leap from different perspectives, developing visual identities that fit the themes of each space. Each logo was applied to various applications such as application forms, business cards, mugs, kindergarten uniforms, brochures, and educational materials as needed."
+            }
+        },
+        {
+            "id" : 4,
             "tag" : [2,3],
             "image" : ["/image/outwork/view/con06.jpg","/image/outwork/view/con07.jpg","/image/outwork/view/con01.jpg","/image/outwork/view/con02.jpg","/image/outwork/view/con04.jpg","/image/outwork/view/con05.jpg"],
             "smallText" : "Corning",
@@ -76,7 +130,160 @@
                 "title" : "Corning’s<br>50th Anniversary<br>in Korea Event<br>Exhibition",
                 "desc" : "Corning is an American company that manufactures special glass such as special glass and ceramic, and has been cooperating for 50 years since it established a joint venture called Samsung Corning in Korea in 1973. In September 2023, the company held a ceremony at its headquarters in Asan, South Chungcheong Province, to commemorate the 50th anniversary of Corning's investment in Korea. <br>Nitor was in charge of developing graphics for the exhibition space for the 50th anniversary of Koning's investment in Korea. Detailed graphics such as podium that describe Koning's major business areas and major products We designed it and worked hard to establish systematic guidelines to implement it.<br><br>*We would like to inform you that this KV was arbitrarily produced for the purpose of explaining the exhibition for the sake of security."
             }
-            
+        },
+        {
+            "id" : 5,
+            "tag" : [2,3],
+            "image" : ["/image/outwork/view/CIIE06.jpg","/image/outwork/view/CIIE01.jpg","/image/outwork/view/CIIE02.jpg","/image/outwork/view/CIIE03.jpg","/image/outwork/view/CIIE04.jpg","/image/outwork/view/CIIE05.jpg"],
+            "smallText" : "2023 CIIE",
+            "ko" : {
+                "title" : "2023 상해<br>국제 수입 박람회<br>삼성관",
+                "desc" : "중국 국제 수입 박람회(CIIE:China International Import Expo)는 해외의 다양한 제품과 서비스들의 중국 시장내 도입을 목적으로 상하이에서 개최되는 대규모 국제 박람회입니다. <br> 니토르는 SAMSUNG의 전시 그래픽 디자인을 총괄 진행했습니다. SAMSUNG의 각 사업부의 기술과 제품을 한 곳에서 선보이는 전시 특성을 고려해, 정체성을 담은 키워드로 키-쉐이프(Key-Shape)블록을 도출, 이 블록들의 유기적 조합으로 지속가능한 미래를 건설한다는 메시지를 표현하였습니다. 아울러, 본 전시에 활용되는 모든 시각 자료의 위계 질서와 통일성 유지를 위한 그래픽 가이드라인을 정립했습니다."
+            },
+            "en" : {
+                "title" : "2023 CIIE<br>SAMSUNG",
+                "desc" : "The China International Import Expo (CIIE) is a large-scale international fair held in Shanghai aimed at introducing various products and services from abroad into the Chinese market. <br> Nitor was in charge of SAMSUNG's exhibition graphic design. Considering the characteristics of SAMSUNG's exhibition showcasing technologies and products in one place, the company derived key-shape blocks with keywords containing identity It expressed the message of building a sustainable future with an organic combination. In addition, graphic guidelines have been established to maintain the hierarchy and unity of all visual materials used in this exhibition."
+            }
+        },
+        {
+            "id" : 6,
+            "tag" : [2,3,5],
+            "image" : ["/image/outwork/view/SB02.jpg","/image/outwork/view/SB01.jpg","/image/outwork/view/SB03.jpg","/image/outwork/view/SB04.jpg","/image/outwork/view/SB05.jpg","/image/outwork/view/SB06.jpg","/image/outwork/view/SB07.jpg"],
+            "smallText" : "Samsung Biologics",
+            "ko" : {
+                "title" : "삼성바이오로직스<br>리뉴얼 홍보관",
+                "desc" : "송도국제도시에 위치한 삼성바이오로직스는 세계 최대 생산 능력과 최첨단 설비를 기반으로 바이오의약품을 개발하고 상업화하는 기업입니다.<br>삼성바이오로직스의 국내외 주요 고객을 위한 홍보관을 리뉴얼하는 과정에서 니토르는 공간에 필요한 그래픽의 디자인과 시공 부분을 담당했습니다. 삼성바이오로직스가 추구하는 비전과 이상을 홍보공간 내부의 그래픽, 일러스트레이션, 아이콘, 컬러 무드 등의 요소를 적절히 활용하고 배치하여 기업 브랜드의 시각적 통일성을 주고자 했으며 그에 최적화된 소재와 마감재로 시공하여 공간의 품격을 높이는데 이바지 했습니다."
+            },
+            "en" : {
+                "title" : "SAMSUNG BIOLOGICS<br>Showroom<br>Renewal",
+                "desc" : "Samsung Biologics, located in Songdo International City, is a company that develops and commercializes biopharmaceuticals based on the world's largest production capacity and state-of-the-art facilities. <br>In the process of renewing Samsung Biologics' promotional halls for major domestic and foreign customers, Nitor was in charge of the design and construction of graphics needed for the space. <br>Samsung BioLogics' vision and ideals were intended to provide visual unity of corporate brands by appropriately utilizing and deploying elements such as graphics, illustrations, icons, and color moods inside the promotional space, and contributed to enhancing the quality of the space by constructing optimized materials and finishing materials."
+            }
+        },
+        {
+            "id" : 7,
+            "tag" : [2,3],
+            "image" : ["/image/outwork/view/FL01.jpg","/image/outwork/view/FL02.jpg","/image/outwork/view/FL03.jpg","/image/outwork/view/FL04.jpg","/image/outwork/view/FL05.jpg","/image/outwork/view/FL06.jpg","/image/outwork/view/FL07.jpg"],
+            "smallText" : "Samsung",
+            "ko" : {
+                "title" : "2024<br>삼성 퍼스트룩",
+                "desc" : "매년 상반기 미국 라스베가스에서 개최하는 퍼스트룩(The First Look)은 삼성전자의 신기술 및 신제품을 선보이는 자리로 다양한 스크린 경험을 통해 미래 디스플레이 방향성을 공유하는 행사입니다. <br>니토르는 2024년 ‘AI와 칩셋을 통한 새로운 시대의 도래’라는 주제로 전시의 핵심 아이덴티티를 시각화 하는 키 비주얼을 개발했으며, 전시 그래픽 부분의 통합 가이드라인 구성을 위한 방향성을 정립하는 역할을 담당했습니다."
+            },
+            "en" : {
+                "title" : "2024<br>SAMSUNG<br>The First Look ",
+                "desc" : "Held in Las Vegas in the first half of every year, The First Look is a venue to showcase new technologies and new products from Samsung Electronics, and it is an event to share future display directions through various screen experiences. <br>Under the theme of 'A New Era Through AI and Chipsets' in 2024, Nitor developed a key visual that visualizes the core identity of the exhibition, and was responsible for establishing direction for the composition of integrated guidelines for the exhibition graphic segment."
+            }
+        },
+        {
+            "id" : 8,
+            "tag" : [2,3],
+            "image" : ["/image/outwork/view/MWC01.jpg","/image/outwork/view/MWC02.jpg","/image/outwork/view/MWC03.jpg","/image/outwork/view/MWC04.jpg","/image/outwork/view/MWC05.jpg","/image/outwork/view/MWC06.jpg","/image/outwork/view/MWC07.jpg"],
+            "smallText" : "Samsung",
+            "ko" : {
+                "title" : "2024 MWC<br>삼성 네트웍스",
+                "desc" : "바르셀로나에서 개최되는 MWC(Mobile World Congress)는 해외의 다양한 모바일 생태계 전반 품목을 전시하는 대규모 국제전시회 입니다. <br>니토르는 본 전시에 참여한 SAMSUNG NETWORKS의 월그래픽 부분을 담당했습니다. 2층으로 구성된 전시 공간의 동선과 특성을 고려하여 각 존의 기술과 정보를 보다 안정성있게 전달할 수 있는 월그래픽, 타이틀, 아이콘, 패널 등의 총체적 그래픽 요소들을 개발하고 배치했습니다. 아울러 전시에 활용되는 모든 그래픽 자료를 세부적으로 구분한 가이드라인을 구축했습니다."
+            },
+            "en" : {
+                "title" : "2024 MWC<br>SAMSUNG NETWORKS",
+                "desc" : ""
+            }
+        },
+        {
+            "id" : 9,
+            "tag" : [4],
+            "image" : ["/image/outwork/view/cyto01.jpg","/image/outwork/view/cyto02.jpg","/image/outwork/view/cyto03.jpg","/image/outwork/view/cyto04.jpg","/image/outwork/view/cyto05.jpg"],
+            "smallText" : "Cytoheal333",
+            "ko" : {
+                "title" : "Cytoheal.333",
+                "desc" : "Cytoheal333은 과학적으로 입증된 봉독성분을 활용하여 여드름균을 억제하고 노화방지, 탈모, 주름개선 등 다양한 피부 트러블을 개선하는 국내 코스메틱 브랜드 입니다. <br>니토르는 Cytoheal.333 제품의 특장점과 원리를 설명하는 브로슈어를 개발하고 제작했습니다. 입증된 과학적 원리와 성능을 가독성있게 표현하기 위해 브랜드 톤앤매너에 맞추어 간결하게 배치하였고, 피부 변화의 세부적 과정을 보여줄 수 있는 일러스트레이션을 활용하여 소비자의 이해를 돕는 동시에분야의 전문성을 부각하였습니다."
+            },
+            "en" : {
+                "title" : "Cytoheal.333",
+                "desc" : "Cytoheal333 is a domestic cosmetic brand that uses scientifically proven bee venom to suppress acne bacteria and improve various skin problems such as anti-aging, hair loss, and wrinkle improvement. <br>Nitor developed and produced a brochure that explains the features and principles of Cytoheal.333 products. In order to express proven scientific principles and performance in a professional voice, we wanted to arrange the tone and manner of the brand in a unified manner, and we planned to increase the readers' concentration by using three-dimensional illustrations that can show the detailed process of skin change."
+            }
+        },
+        {
+            "id" : 10,
+            "tag" : [4],
+            "image" : ["/image/outwork/view/HF01.jpg","/image/outwork/view/HF02.jpg","/image/outwork/view/HF03.jpg","/image/outwork/view/HF04.jpg","/image/outwork/view/HF05.jpg","/image/outwork/view/HF06.jpg"],
+            "smallText" : "Healthyfamily Organization",
+            "ko" : {
+                "title" : "가정을<br>건강하게하는<br>시민의모임",
+                "desc" : "가정의 기능을 유지하고 잠재력을 개발할 수 있는 사업을 수행하는 사단법인 가정을 건강하게하는 시민의 모임(이하 가건모)은 건강한가정, 건강한 사회에 기여하는 것을 목적으로 하는 비영리 단체입니다. <br> 니토르는 각 지부 및 구독자를 대상으로 가건모에서 발간하는 온라인 뉴스레터의 편집 디자인을 개발하였습니다. 가정의 잠재력을 독려하고 지원해줄 프로그램 소식을 전달하는 개발자의 의도를 반영해 다양한 연령대 독자들이 보아도 문제없을 높은 가독성과 명확한 카테고리를 도입했으며, 텍스트만으로 구성된 기존 뉴스레터의 문제점을 보완해줄 삽화를 배치하여 현대적이면서도 디테일한 시각적 요소를 부각시켰습니다."
+            },
+            "en" : {
+                "title" : "HealthyFamily<br>Organization",
+                "desc" : "Healthyfamily.or.kr (hereinafter referred to as Ka Gunmo) is a non-profit organization that conducts various businesses with the aim of contributing to a healthy family and a healthy society. <br> Nitor has developed an editorial design for online newsletters published by Ga Gunmo for each branch and subscriber. Reflecting the developer's intention to deliver program news to encourage and support the potential of the home, it introduced high readability and clear categories that would not be a problem for readers of various ages, and highlighted modern and detailed visual elements by deploying illustrations that would compensate for the problems of existing newsletters composed solely of text."
+            }
+        },
+        {
+            "id" : 13,
+            "tag" : [1],
+            "image" : ["/image/outwork/view/TF01.jpg","/image/outwork/view/TF02.jpg","/image/outwork/view/TF03.jpg","/image/outwork/view/TF04.jpg","/image/outwork/view/TF05.jpg"],
+            "smallText" : "Topaz Factory",
+            "ko" : {
+                "title" : "토파즈 팩토리",
+                "desc" : ""
+            },
+            "en" : {
+                "title" : "Topaz Factory",
+                "desc" : ""
+            }
+        },
+        {
+            "id" : 14,
+            "tag" : [4],
+            "image" : ["/image/outwork/view/TF07.jpg","/image/outwork/view/TF03.jpg","/image/outwork/view/TF04.jpg","/image/outwork/view/TF05.jpg"],
+            "smallText" : "Topaz Factory",
+            "ko" : {
+                "title" : "토파즈 팩토리",
+                "desc" : ""
+            },
+            "en" : {
+                "title" : "Topaz Factory",
+                "desc" : ""
+            }
+        },
+        {
+            "id" : 15,
+            "tag" : [4],
+            "image" : ["/image/outwork/view/RX01.jpg","/image/outwork/view/RX02.jpg","/image/outwork/view/RX03.jpg","/image/outwork/view/RX04.jpg"],
+            "smallText" : "RX portfolio",
+            "ko" : {
+                "title" : "RX (IRIS)<br>갤럭시 포트폴리오",
+                "desc" : ""
+            },
+            "en" : {
+                "title" : "RX (IRIS) <br> Galaxy Portfolio",
+                "desc" : ""
+            }
+        },
+        {
+            "id" : 16,
+            "tag" : [4],
+            "image" : ["/image/outwork/view/O201.jpg","/image/outwork/view/O202.jpg","/image/outwork/view/O203.jpg","/image/outwork/view/O204.jpg"],
+            "smallText" : "RX portfolio",
+            "ko" : {
+                "title" : "클트레이드<br>O2 워셔",
+                "desc" : ""
+            },
+            "en" : {
+                "title" : "KL TRADE<br>O2 Washer",
+                "desc" : ""
+            }
+        },
+        {
+            "id" : 17,
+            "tag" : [4],
+            "image" : ["/image/outwork/view/namdo01.jpg","/image/outwork/view/namdo02.jpg","/image/outwork/view/namdo03.jpg"],
+            "smallText" : "",
+            "ko" : {
+                "title" : "국제남도<br>음식문화큰잔치",
+                "desc" : ""
+            },
+            "en" : {
+                "title" : "Namdo<br>Food Festival",
+                "desc" : ""
+            }
         }
     ]
 }

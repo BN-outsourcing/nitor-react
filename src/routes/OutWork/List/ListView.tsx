@@ -1,5 +1,5 @@
 import { useGSAP } from "@gsap/react";
-import { useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { blurAnimtaion } from "../../../utils/gsap";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
@@ -231,6 +231,7 @@ export default function ListView({item,glass} : Props) {
 
     // 클릭 이벤트
     const itemOnClick = (id : number)=>{
+        sessionStorage.setItem("y", window.scrollY.toString());
         navigate(`view/${id}`);
     }
 

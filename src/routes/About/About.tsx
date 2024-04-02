@@ -2,11 +2,12 @@ import styled from "styled-components"
 import ImbLayout from "./ImbLayout";
 import ImgGridLayout from "./ImgGridLayout";
 import GridLayout from "./GridLayout";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { SubLayout } from "../../components/Layout/SubLayout";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLocation } from "react-router-dom";
 
 const Wrppaer = styled.div`
     max-width: 1600px;

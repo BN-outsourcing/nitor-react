@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import ListView from "./ListView";
 import SubLayoutTit, { SubLayout } from "../../../components/Layout/SubLayout";
@@ -28,6 +28,14 @@ export default function List() {
 
     const [filterItem,setFilterItem] = useState<Item[]>([]);
     const clickTag = useRecoilValue(listTagClickAtom);
+
+    useEffect(()=>{
+
+        setTimeout(()=>{
+            window.scroll(0,sessionStorage.y);
+        },100)
+
+    },[item]);
 
     // 필터데이터
     useEffect(()=>{
@@ -67,7 +75,6 @@ export default function List() {
 
     return (
         <>
-
             <SubLayout
                 $page="list"
                 onMouseMove={(e)=>onMove(e)}
@@ -86,11 +93,9 @@ export default function List() {
                     
                 </Wrapper>
             </SubLayout>
-
             <CursorType1 ref={glassRef}>
                 {t('list.glass')} <img src="/image/icon/magnifying.png" alt="" />
             </CursorType1>
-
         </>
     )
 }
