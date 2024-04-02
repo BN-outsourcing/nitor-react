@@ -1,5 +1,5 @@
 import { useGSAP } from "@gsap/react";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useRef } from "react";
 import { blurAnimtaion } from "../../../utils/gsap";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";

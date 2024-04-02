@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components"
 import { ColorP } from "../../../components/p";
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useCallback, useRef, useState } from "react";
 import { Navigation } from "swiper/modules";
 import gsap from "gsap";
@@ -392,7 +392,6 @@ export default function View() {
     const {id} = useParams();
     const {data} = useQuery(["iteminfo",id],()=>itemInfoFetch(id));
     const {i18n} = useTranslation();
-    const navigate = useNavigate();
 
     const [index,setIndex] = useState('00');
     const [last,setLast] = useState('00');
