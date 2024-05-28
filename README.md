@@ -1,7 +1,7 @@
 # NITOR
 
 <p align="center">
-  <img src="https://github.com/solo-service/poketmon_hbd/assets/96280450/a62bdbd8-ed3f-4e54-af5e-583068c4b57c">
+  <img src="https://github.com/BN-outsourcing/nitor-react/assets/96280450/50a9022a-698f-43c6-aa2d-cb476aad70e5">
 </p>
 
 ## NITOR
@@ -17,6 +17,8 @@ http://nitordesign.net/
 <br>
 
 ## 프로젝트 소개
+
+React-query와 i18next을 이용하여 다국어 웹사이트를 구축한 NITOR 웹사이트 입니다.
 
 <br>
 
